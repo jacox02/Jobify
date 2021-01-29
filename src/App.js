@@ -1,11 +1,21 @@
-import logo from "./logo.svg";
-import "./App.css";
-import NavbarComponent from "./Components/HomeComponent";
-import "semantic-ui-css/semantic.min.css";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+import NavbarComponent from "./Components/NavbarComponent";
+import HomeComponent from "./Components/HomeComponent";
+import LoginComponent from "./Components/LoginComponent";
+
 function App() {
   return (
     <div className="App">
-      <NavbarComponent></NavbarComponent>
+      <div>
+        <NavbarComponent></NavbarComponent>
+        <Router>
+          <Switch>
+            <Route path="/Login" render={() => <LoginComponent />}></Route>
+            <Route path="/" exact component={HomeComponent} />
+          </Switch>
+        </Router>
+      </div>
     </div>
   );
 }
