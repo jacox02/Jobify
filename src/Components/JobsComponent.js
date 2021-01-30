@@ -1,25 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Card } from "react-bootstrap";
 
 const axios = require("axios");
 
 export default function Jobs() {
-  const [Works, setWorks] = useState([]);
-
-  const getJobs = () => {
-    axios
-      .get("http://localhost:3050/Works/List")
-      .then((response) => {
-        console.log(response.data);
-        setWorks(response.data);
-        console.log(Works);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
   const renderJobs = () => {
+    axios.get("http://localhost:3050/Works/List").then((response) => {
+      console.log(response.data);
+    });
     return (
       <Card style={{ width: "18rem" }}>
         <Card.Body>
@@ -39,7 +27,7 @@ export default function Jobs() {
   };
 
   useEffect(() => {
-    getJobs();
+    renderJobs();
   }, []);
 
   return (
