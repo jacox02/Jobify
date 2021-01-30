@@ -17,3 +17,20 @@ app.get("/Works/List", (req, res) => {
     }
   );
 });
+
+app.get("/Works/:id/Details", (req, res) => {
+  connection.connect();
+  connection.query(
+    `select * from Categories C, Works W, Companies A where W.Company_ID = A.Company_ID AND W.Category_ID = C.Category_ID and Work_ID = ${req.params.id}`,
+    (err, results) => {
+      if (err) throw err;
+      res.send({
+        message: "Getting works",
+        code: 200,
+        data: results,
+      });
+    }
+  );
+});
+
+module.exports = app;
