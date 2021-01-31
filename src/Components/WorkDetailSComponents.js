@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
 import "../style/styleWorkDetail.css";
 
-export default function WorkDetailSComponents(props) {
+export default function WorkDetailSComponents() {
   const [WorkDetails, setWorks] = useState([
     {
       Apply_Method: "Send a email to email@email.com",

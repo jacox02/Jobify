@@ -49,8 +49,8 @@ export default class NavbarComponent extends Component {
               </NavDropdown>
             </Nav>
 
-            <Link To="/Login">
-              <Button variant="outline-success">Login</Button>
+            <Link to="/Login">
+              <Button variant="outline-success">Login </Button>
             </Link>
           </Navbar.Collapse>
         </Navbar>
