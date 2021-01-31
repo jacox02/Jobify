@@ -1,40 +1,52 @@
-import React, { useEffect } from "react";
+import React, { Component } from "react";
 import { Card } from "react-bootstrap";
 
 const axios = require("axios");
+export default class JobsComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      works: [],
+    };
+  }
 
-export default function Jobs() {
-  const renderJobs = () => {
-    axios.get("http://localhost:3050/Works/List").then((response) => {
-      console.log(response.data);
+  getWorks() {
+    axios
+      .get("http://localhost:3050/Works/List")
+      .then((response) => {
+        this.setState({ works: response.data });
+      })
+      .catch((error) => {
+        console.log(`There was an error: ${error}`);
+      });
+  }
+
+  renderJobs() {
+    return this.state.works.map((work) => {
+      return (
+        <Card style={{ width: "18rem" }} key={work.Work_ID}>
+          <Card.Body>
+            <Card.Title>{work.Work_Title}</Card.Title>
+            <Card.Subtitle className="mb-2 text-muted">
+              {work.Category_Name}
+            </Card.Subtitle>
+            <Card.Text>{work.Description}</Card.Text>
+            <Card.Link href={`/Works/${work.Work_ID}/Details`}>
+              Vermas
+            </Card.Link>
+          </Card.Body>
+        </Card>
+      );
     });
+  }
+  componentDidMount() {
+    this.getWorks();
+  }
+  render() {
     return (
-      <Card style={{ width: "18rem" }}>
-        <Card.Body>
-          <Card.Title>Card Title</Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">
-            Card Subtitle
-          </Card.Subtitle>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </Card.Text>
-          <Card.Link href="#">Card Link</Card.Link>
-          <Card.Link href="#">Another Link</Card.Link>
-        </Card.Body>
-      </Card>
+      <div>
+        <div>{this.renderJobs()}</div>
+      </div>
     );
-  };
-
-  useEffect(() => {
-    renderJobs();
-  }, []);
-
-  return (
-    <div>
-      {() => {
-        renderJobs();
-      }}
-    </div>
-  );
+  }
 }
