@@ -20,25 +20,30 @@ export default class JobsComponent extends Component {
         console.log(`There was an error: ${error}`);
       });
   }
-
+  sortJobs() {}
   renderJobs() {
     return this.state.works.map((work) => {
       return (
-        <Card style={{ width: "18rem" }} key={work.Work_ID}>
-          <Card.Body>
-            <Card.Title>{work.Work_Title}</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">
-              {work.Category_Name}
-            </Card.Subtitle>
-            <Card.Text>{work.Description}</Card.Text>
-            <Card.Link href={`/Works/${work.Work_ID}/Details`}>
-              Vermas
-            </Card.Link>
-          </Card.Body>
-        </Card>
+        <div key={work.Work_ID}>
+          <Card style={{ width: "18rem" }}>
+            <Card.Body>
+              <Card.Title>{work.Work_Title}</Card.Title>
+              <Card.Subtitle className="mb-2 text-muted">
+                {work.Category_Name}
+              </Card.Subtitle>
+              <Card.Text>{work.Description}</Card.Text>
+              <Card.Link>
+                <Card.Link href={`/Works/${work.Work_ID}/Details`}>
+                  Ver mas
+                </Card.Link>
+              </Card.Link>
+            </Card.Body>
+          </Card>
+        </div>
       );
     });
   }
+
   componentDidMount() {
     this.getWorks();
   }
