@@ -5,7 +5,7 @@ const connection = require("../Database/database");
 
 app.get("/Works/List", (req, res) => {
   connection.query(
-    "select * from Categories C, Works W, Companies A where W.Company_ID = A.Company_ID AND W.Category_ID = C.Category_ID",
+    "select * from Categories C, Works W, Companies A where W.Company_ID = A.Company_ID AND W.Category_ID = C.Category_ID ORDER BY Publish_Date DESC",
     (err, results) => {
       if (err) throw err;
       res.send(results);
@@ -30,5 +30,18 @@ app.get("/Works/:id/Details", (req, res) => {
     }
   );
 });
+
+app.get("/Works/Categories", (req, res) => {
+  connection.query(
+    "select * from Categories ",
+    (err, results) => {
+      if (err) throw err;
+      res.send(results);
+    }
+  );
+});
+
+
+
 
 module.exports = app;
