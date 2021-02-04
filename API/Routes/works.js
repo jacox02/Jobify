@@ -12,9 +12,9 @@ app.get("/Works/List", (req, res) => {
     }
   );
 });
-app.get("/Works/:cat/List", (req, res) => {
+app.get("/Works/:id/List", (req, res) => {
   connection.query(
-    `select * from Categories C, Works W, Companies A where W.Company_ID = A.Company_ID AND W.Category_ID = C.Category_ID AND W.Category_ID = ${req.params.cat}`,
+    `select * from Categories C, Works W, Companies A where W.Company_ID = A.Company_ID AND W.Category_ID = C.Category_ID AND W.Category_ID = ${req.params.id}`,
     (err, results) => {
       if (err) throw err;
       res.send(results);

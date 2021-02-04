@@ -104,12 +104,6 @@ this.setState({
   render() {
     return (
       <div>
-         <select name="Categoria" className="form-control form-control-sm" >
-
-          {this.state.categories.map(e => (
-           <option key={e.Category_ID} value={e.Category_Name}>{e.Category_Name}</option> ))}
-          </select>
-
         <div>{this.renderJobs()}</div>
         
         <ReactPaginate
