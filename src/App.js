@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { withAuthenticationRequired } from "@auth0/auth0-react";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -9,6 +10,7 @@ import Jobs from "./Components/JobsComponent";
 import CategoriesComponent from "./Components/CategoryComponent";
 import AllCategoriesComponent from "./Components/AllJobsCategory";
 import PostJobComponent from "./Components/PostJobComponent";
+
 function App(props) {
   return (
     <div className="App">
@@ -19,7 +21,11 @@ function App(props) {
             path="/Works/:id/Details"
             component={WDetailsComponent}
           ></Route>
-          <Route path="/AddOffer" component={PostJobComponent}></Route>
+          {/*<Route path="/AddOffer" component={PostJobComponent}></Route>*/}
+          <Route
+            path="/AddOffer"
+            component={withAuthenticationRequired(PostJobComponent)}
+          />
           <Route path="/Works/:id/List" component={CategoriesComponent}></Route>
           <Route
             path="/Works/:id/All"

@@ -1,5 +1,7 @@
 import React from "react";
 import { Form, Col, Row, Button } from "react-bootstrap";
+import { withAuthenticationRequired } from "@auth0/auth0-react";
+
 export default function PostJobComponent() {
   return (
     <Form>
@@ -43,4 +45,16 @@ export default function PostJobComponent() {
       </Form.Group>
     </Form>
   );
+}
+{
+  /*
+export default withAuthenticationRequired(PostJobComponent, {
+  onRedirecting: () => (
+    <div>
+      Checando credenciales, si no esta loggeado sera redirigido a la pagina de
+      login...
+    </div>
+  ),
+});
+*/
 }
