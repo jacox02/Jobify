@@ -8,7 +8,7 @@ export default class AllCategoriesComponent extends Component {
   constructor(props) {
     super();
     this.state = {
-      Works: []
+      Works: [],
     };
   }
   getWorkDetails() {
@@ -27,29 +27,25 @@ export default class AllCategoriesComponent extends Component {
   }
   render() {
     return this.state.Works.map((work) => {
-        
-        return (
-            
-          <div key={work.Work_ID}>
-              <div>
-            Categoria: {work.Category_Name}
-        </div>
-            <Card style={{ width: "18rem" }}>
-              <Card.Body>
-                <Card.Title>{work.Work_Title}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">
-                  {work.Company_Name}
-                </Card.Subtitle>
-                <Card.Text>{work.Location}</Card.Text>
-                <Card.Link>
-                  <Card.Link href={`/Works/${work.Work_ID}/Details`}>
-                    Ver mas
-                  </Card.Link>
+      return (
+        <div key={work.Work_ID}>
+          <div>Categoria: {work.Category_Name}</div>
+          <Card style={{ width: "18rem" }}>
+            <Card.Body>
+              <Card.Title>{work.Work_Title}</Card.Title>
+              <Card.Subtitle className="mb-2 text-muted">
+                {work.Company_Name}
+              </Card.Subtitle>
+              <Card.Text>{work.Location}</Card.Text>
+              <Card.Link>
+                <Card.Link href={`/Works/${work.Work_ID}/Details`}>
+                  Ver mas
                 </Card.Link>
-              </Card.Body>
-            </Card>
-          </div>
-        );
-      });
+              </Card.Link>
+            </Card.Body>
+          </Card>
+        </div>
+      );
+    });
   }
 }

@@ -4,7 +4,6 @@ const app = express();
 const connection = require("../Database/database");
 
 app.get("/Categories", (req, res) => {
-  connection.connect();
   connection.query("Select * from Categories", (err, results, fields) => {
     if (err) throw err;
     res.send({
@@ -13,7 +12,6 @@ app.get("/Categories", (req, res) => {
       data: results,
     });
   });
-  connection.end();
 });
 
 module.exports = app;

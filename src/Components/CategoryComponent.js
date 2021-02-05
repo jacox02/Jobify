@@ -13,7 +13,7 @@ export default class CategoriesComponent extends Component {
       tableData: [],
       orgtableData: [],
       perPage: 10,
-      currentPage: 0
+      currentPage: 0,
     };
     this.handlePageClick = this.handlePageClick.bind(this);
   }
@@ -21,15 +21,18 @@ export default class CategoriesComponent extends Component {
     axios
       .get(`http://localhost:3050/Works/${this.props.match.params.id}/List`)
       .then((response) => {
-        this.setState({ Works: response.data })
-        const data = response.data
-        const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)
+        this.setState({ Works: response.data });
+        const data = response.data;
+        const slice = data.slice(
+          this.state.offset,
+          this.state.offset + this.state.perPage
+        );
 
         this.setState({
-            pageCount: Math.ceil(data.length / this.state.perPage),
-            orgtableData :response.data,
-            Works:slice
-        })
+          pageCount: Math.ceil(data.length / this.state.perPage),
+          orgtableData: response.data,
+          Works: slice,
+        });
       })
       .catch((err) => {
         return err;
@@ -39,32 +42,37 @@ export default class CategoriesComponent extends Component {
     const selectedPage = e.selected;
     const offset = selectedPage * this.state.perPage;
 
-    this.setState({
+    this.setState(
+      {
         currentPage: selectedPage,
-        offset: offset
-    }, () => {
-        this.loadMoreData()
-    });
-
-};
+        offset: offset,
+      },
+      () => {
+        this.loadMoreData();
+      }
+    );
+  };
   loadMoreData() {
-const data = this.state.orgtableData;
+    const data = this.state.orgtableData;
 
-const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)
-this.setState({
-  pageCount: Math.ceil(data.length / this.state.perPage),
-  Works:slice
-})
-
-}
+    const slice = data.slice(
+      this.state.offset,
+      this.state.offset + this.state.perPage
+    );
+    this.setState({
+      pageCount: Math.ceil(data.length / this.state.perPage),
+      Works: slice,
+    });
+  }
   componentDidMount() {
     this.getWorkDetails();
     console.log(this.props.match.params.id);
   }
   renderCat() {
     return this.state.Works.map((work) => {
-        return (
-            <div> Categoria: {work.Category_Name}
+      return (
+        <div>
+          Categoria: {work.Category_Name}
           <div key={work.Work_ID}>
             <Card style={{ width: "18rem" }}>
               <Card.Body>
@@ -81,20 +89,21 @@ this.setState({
               </Card.Body>
             </Card>
           </div>
-          
-          </div>
-        );
-      });
-      
+        </div>
+      );
+    });
   }
-  render(){
-      return <div>
-          <div>
-            {this.renderCat()}
-          </div>
-          <Link className="btn btn-light btn-lg btn-block" to={`/Works/${this.props.match.params.id}/All`}>
-              All Jobs
-          </Link>
+  render() {
+    return (
+      <div>
+        <div>{this.renderCat()}</div>
+        <Link
+          className="btn btn-light btn-lg btn-block"
+          to={`/Works/${this.props.match.params.id}/All`}
+        >
+          All Jobs
+        </Link>
       </div>
+    );
   }
 }

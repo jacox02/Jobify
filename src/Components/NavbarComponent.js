@@ -28,7 +28,8 @@ const NavbarComponent = React.memo(function NavbarComponent() {
         <Navbar.Brand href="/">Jobify</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Nav className="mr-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
+          <Nav.Link href="/">Home</Nav.Link>
+          <Nav.Link href="/AddOffer">Add job</Nav.Link>
         </Nav>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
@@ -40,7 +41,7 @@ const NavbarComponent = React.memo(function NavbarComponent() {
                 Contabilidad
               </NavDropdown.Item>
               <NavDropdown.Item href="/Works/3/List">
-               Administracion
+                Administracion
               </NavDropdown.Item>
               <NavDropdown.Item href="/Works/4/List">
                 Banca | Servicios Financieros
@@ -48,9 +49,7 @@ const NavbarComponent = React.memo(function NavbarComponent() {
               <NavDropdown.Item href="/Works/5/List">
                 Contabilidad | Finanzas | Auditoria
               </NavDropdown.Item>
-              <NavDropdown.Item href="/Works/6/List">
-                Salud
-              </NavDropdown.Item>
+              <NavDropdown.Item href="/Works/6/List">Salud</NavDropdown.Item>
               <NavDropdown.Item href="/Works/7/List">
                 Recursos Humanos
               </NavDropdown.Item>
@@ -72,7 +71,6 @@ const NavbarComponent = React.memo(function NavbarComponent() {
               <NavDropdown.Item href="/Works/18/List">
                 Desarrollo de Software
               </NavDropdown.Item>
-              
             </NavDropdown>
           </Nav>
           <>{userBarButton()}</>
