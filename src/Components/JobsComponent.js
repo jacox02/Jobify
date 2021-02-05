@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Card } from "react-bootstrap";
+import { Card, Button, Form, FormControl } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
+import "../style/styleJob.css"
 
 const axios = require("axios");
 export default class JobsComponent extends Component {
@@ -93,20 +94,16 @@ export default class JobsComponent extends Component {
     return this.state.works.map((work) => {
       return (
         <div key={work.Work_ID}>
-          <Card style={{ width: "18rem" }}>
-            <Card.Body>
-              <Card.Title>{work.Work_Title}</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
-                {work.Company_Name}
-              </Card.Subtitle>
-              <Card.Text>{work.Location}</Card.Text>
-              <Card.Link>
-                <Card.Link href={`/Works/${work.Work_ID}/Details`}>
-                  Ver mas
-                </Card.Link>
-              </Card.Link>
-            </Card.Body>
-          </Card>
+          <Card className="Job">
+     <Card.Header>{work.Work_Title}</Card.Header>
+     <Card.Body>
+     <Card.Title>{work.Company_Name}</Card.Title>
+    <Card.Text>
+      {work.Location}
+      </Card.Text>
+    <Button variant="primary" href={`/Works/${work.Work_ID}/Details`}>Ver mas</Button>
+  </Card.Body>
+</Card>
         </div>
       );
     });
@@ -114,8 +111,13 @@ export default class JobsComponent extends Component {
 
   render() {
     return (
-      <div>
-        <div className="pt-2">
+      
+      <div className="padre">
+        <Form inline className="Busqueda">
+      <FormControl type="text" placeholder="Search" />
+      <Button variant="outline-primary">Search</Button>
+    </Form>
+        <div className="categoria">
           <select name="Categoria" className="form-control">
             {this.state.categories.map((cat) => (
               <option
@@ -148,6 +150,8 @@ export default class JobsComponent extends Component {
           subContainerClassName={"pages pagination"}
           activeClassName={"active"}
         />
+
+
       </div>
     );
   }
