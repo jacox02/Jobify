@@ -4,6 +4,7 @@ import ReactPaginate from "react-paginate";
 import "../style/styleJob.css";
 import { faHome, faBriefcase, faMapMarkedAlt} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import "../style/StylePagination.css"
 
 
 const axios = require("axios");
