@@ -7,7 +7,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import NavbarComponent from "./Components/NavbarComponent";
 import WDetailsComponent from "./Components/WDetailsComponent";
 import Jobs from "./Components/JobsComponent";
-import CategoriesComponent from "./Components/CategoryComponent";
 import AllCategoriesComponent from "./Components/AllJobsCategory";
 import PostJobComponent from "./Components/PostJobComponent";
 
@@ -26,11 +25,6 @@ function App(props) {
             path="/AddOffer"
             component={withAuthenticationRequired(PostJobComponent)}
           />
-          <Route path="/Works/:id/List" component={CategoriesComponent}></Route>
-          <Route
-            path="/Works/:id/All"
-            component={AllCategoriesComponent}
-          ></Route>
 
           <Route exact path="/" component={Jobs}></Route>
         </Switch>

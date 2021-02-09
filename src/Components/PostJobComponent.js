@@ -5,7 +5,7 @@ import "../style/PostJobStyle.css"
 
 export default function PostJobComponent() {
   return (
-    <Form className="Post bg-secondary">
+    <Form className="Post">
       <Form.Group>
         <Form.Label >
           Work Title
@@ -82,7 +82,7 @@ export default function PostJobComponent() {
 
       <Form.Group as={Row}>
         <Col >
-          <Button variant="success"  size="lg" block type="submit">Publicar</Button>
+          <Button variant="secondary"  size="lg" block type="submit">Publicar</Button>
         </Col>
       </Form.Group>
     </Form>
