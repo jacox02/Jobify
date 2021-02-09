@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Card, Button, Form, FormControl } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
-import "../style/styleJob.css"
+import "../style/styleJob.css";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {fabrowser} from '@fortawesome/free-solid-svg-icons'
 
 const axios = require("axios");
 export default class JobsComponent extends Component {

@@ -1,21 +1,72 @@
 import React from "react";
 import { Form, Col, Row, Button } from "react-bootstrap";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
+import "../style/PostJobStyle.css"
 
 export default function PostJobComponent() {
   return (
-    <Form>
-      <Form.Group as={Row} controlId="formHorizontalEmail">
-        <Form.Label column sm={2}>
-          Company
+    <Form className="Post bg-secondary">
+      <Form.Group>
+        <Form.Label >
+          Work Title
         </Form.Label>
-        <Col sm={10}>
-          <Form.Control type="email" placeholder="Email" />
-        </Col>
+          <Form.Control type="Text" />
       </Form.Group>
-      <Form.Group controlId="exampleForm.SelectCustom">
+
+      <Form.Group>
+        <Form.Label>
+          Position
+        </Form.Label>
+          <Form.Control type="Text" />
+      </Form.Group>
+
+      <Form.Group>
+        <Form.Label>
+          Work Keywords
+        </Form.Label>
+          <Form.Control type="Text" />
+      </Form.Group>
+
+      <Form.Group>
+        <Form.Label>
+          Location
+        </Form.Label>
+          <Form.Control type="Text" />
+      </Form.Group>
+
+      <Form.Group>
+        <Form.Label>Working Time</Form.Label>
+        <Form.Control as="select">
+          <option>Full Time</option>
+          <option>Parti-Time Job</option>
+          <option>Flexitime</option>
+          <option>Temporary Job</option>
+        </Form.Control>
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>
+          Publish Date
+        </Form.Label>
+          <Form.Control type="Text" />
+      </Form.Group>
+
+      <Form.Group controlId="formHorizontalEmail">
+        <Form.Label>
+          Email
+        </Form.Label>
+          <Form.Control type="Email" />
+      </Form.Group>
+
+      <Form.Group>
+        <Form.Label>
+          Apply Method
+        </Form.Label>
+          <Form.Control type="Text" />
+      </Form.Group>
+
+      <Form.Group>
         <Form.Label>Categoria</Form.Label>
-        <Form.Control as="select" custom>
+        <Form.Control as="select">
           <option>1</option>
           <option>2</option>
           <option>3</option>
@@ -23,24 +74,15 @@ export default function PostJobComponent() {
           <option>5</option>
         </Form.Control>
       </Form.Group>
-      <Form.Group as={Row} controlId="formHorizontalPassword">
-        <Form.Label column sm={2}>
-          Password
-        </Form.Label>
-        <Col sm={10}>
-          <Form.Control type="password" placeholder="Password" />
-        </Col>
-      </Form.Group>
 
-      <Form.Group as={Row} controlId="formHorizontalCheck">
-        <Col sm={{ span: 10, offset: 2 }}>
-          <Form.Check label="Remember me" />
-        </Col>
-      </Form.Group>
+      <Form.Group>
+    <Form.Label>Description</Form.Label>
+    <Form.Control as="textarea" rows={3} />
+  </Form.Group>
 
       <Form.Group as={Row}>
-        <Col sm={{ span: 10, offset: 2 }}>
-          <Button type="submit">Sign in</Button>
+        <Col >
+          <Button variant="success"  size="lg" block type="submit">Publicar</Button>
         </Col>
       </Form.Group>
     </Form>
