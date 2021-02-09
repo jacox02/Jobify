@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { Card, Button, Form, FormControl } from "react-bootstrap";
+import { Card, Button, Form, FormControl, Row, Col } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
 import "../style/styleJob.css";
+import { faHome, faBriefcase, faMapMarkedAlt} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {fabrowser} from '@fortawesome/free-solid-svg-icons'
+
 
 const axios = require("axios");
 export default class JobsComponent extends Component {
@@ -97,13 +98,13 @@ export default class JobsComponent extends Component {
       return (
         <div key={work.Work_ID}>
           <Card className="Job">
-     <Card.Header>{work.Work_Title}</Card.Header>
+     <Card.Header className="titulo"><FontAwesomeIcon icon={faBriefcase}/> {work.Work_Title}</Card.Header>
      <Card.Body>
      <Card.Title>{work.Company_Name}</Card.Title>
     <Card.Text>
-      {work.Location}
+    <FontAwesomeIcon icon={faMapMarkedAlt}/> {work.Location}
       </Card.Text>
-    <Button variant="primary" href={`/Works/${work.Work_ID}/Details`}>Ver mas</Button>
+    <Button className="VerMas" variant="outline-secondary" href={`/Works/${work.Work_ID}/Details`}>Ver mas</Button>
   </Card.Body>
 </Card>
         </div>
@@ -115,10 +116,14 @@ export default class JobsComponent extends Component {
     return (
       
       <div className="padre">
+        <Row>
+        <Col>
         <Form inline className="Busqueda">
-      <FormControl type="text" placeholder="Search" />
-      <Button variant="outline-primary">Search</Button>
+      <FormControl className="BarSearch" type="text" placeholder="Search" />
+      <Button variant="outline-secondary">Search</Button>
     </Form>
+    </Col>
+    <Col>
         <div className="categoria">
           <select name="Categoria" className="form-control">
             {this.state.categories.map((cat) => (
@@ -137,8 +142,9 @@ export default class JobsComponent extends Component {
             ))}
           </select>
         </div>
-        <div className="pt-2">{this.renderJobs()}</div>
-
+        
+        </Col>
+        </Row><div className="pt-2">{this.renderJobs()}</div>
         <ReactPaginate
           previousLabel={"prev"}
           nextLabel={"next"}

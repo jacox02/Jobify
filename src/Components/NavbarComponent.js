@@ -24,7 +24,7 @@ const NavbarComponent = React.memo(function NavbarComponent() {
 
   return (
     <div>
-      <Navbar expand="lg" bg="light" variant="light"> 
+      <Navbar variant="dark" expand="lg" className="Navbar"> 
         <Navbar.Brand href="/">Jobify</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Nav className="mr-auto">
