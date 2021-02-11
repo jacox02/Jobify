@@ -51,7 +51,7 @@ export default class WDetailsComponent extends Component {
             <Card.Text>{this.state.Work.Description}</Card.Text>
             <Card.Text><b>Correo:</b> {this.state.Work.Email}</Card.Text>
             <Card.Text><b>Ubicacion:</b> {this.state.Work.Location}</Card.Text>
-            <Button>Postularse</Button>
+            <Button variant="secondary" block  >Postularse</Button>
           </Card.Body>
         </Card>
       </div>
