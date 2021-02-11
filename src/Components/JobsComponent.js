@@ -1,6 +1,11 @@
 import React, { Component } from "react";
-import { Card } from "react-bootstrap";
+import { Card, Button, Form, FormControl, Row, Col } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
+import "../style/styleJob.css";
+import { faHome, faBriefcase, faMapMarkedAlt} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import "../style/StylePagination.css"
+
 
 const axios = require("axios");
 export default class JobsComponent extends Component {
@@ -88,20 +93,16 @@ export default class JobsComponent extends Component {
     return this.state.works.map((work) => {
       return (
         <div key={work.Work_ID}>
-          <Card style={{ width: "18rem" }}>
-            <Card.Body>
-              <Card.Title>{work.Work_Title}</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
-                {work.Company_Name}
-              </Card.Subtitle>
-              <Card.Text>{work.Location}</Card.Text>
-              <Card.Link>
-                <Card.Link href={`/Works/${work.Work_ID}/Details`}>
-                  Ver mas
-                </Card.Link>
-              </Card.Link>
-            </Card.Body>
-          </Card>
+          <Card className="Job">
+     <Card.Header className="titulo"><FontAwesomeIcon icon={faBriefcase}/> {work.Work_Title}</Card.Header>
+     <Card.Body>
+     <Card.Title>{work.Company_Name}</Card.Title>
+    <Card.Text>
+    <FontAwesomeIcon icon={faMapMarkedAlt}/> {work.Location}
+      </Card.Text>
+    <Button className="VerMas" variant="outline-secondary" href={`/Works/${work.Work_ID}/Details`}>Ver mas</Button>
+  </Card.Body>
+</Card>
         </div>
       );
     });
@@ -109,9 +110,23 @@ export default class JobsComponent extends Component {
 
   render() {
     return (
+<<<<<<< HEAD
       <div>
         <div>Category: {this.state.currentCategory}</div>
         <div className="pt-2">
+=======
+      
+      <div className="padre">
+        <Row>
+        <Col>
+        <Form inline className="Busqueda">
+      <FormControl className="BarSearch" type="text" placeholder="Search" />
+      <Button variant="outline-secondary">Search</Button>
+    </Form>
+    </Col>
+    <Col>
+        <div className="categoria">
+>>>>>>> d5a6397ac6afffc8eecb5ec6e7b04227e1929469
           <select name="Categoria" className="form-control">
             {this.state.categories.map((cat) => (
               <option
@@ -127,8 +142,9 @@ export default class JobsComponent extends Component {
             ))}
           </select>
         </div>
-        <div className="pt-2">{this.renderJobs()}</div>
-
+        
+        </Col>
+        </Row><div className="pt-2">{this.renderJobs()}</div>
         <ReactPaginate
           previousLabel={"prev"}
           nextLabel={"next"}
@@ -142,6 +158,8 @@ export default class JobsComponent extends Component {
           subContainerClassName={"pages pagination"}
           activeClassName={"active"}
         />
+
+
       </div>
     );
   }
