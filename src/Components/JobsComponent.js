@@ -2,20 +2,10 @@ import React, { Component } from "react";
 import { Card, Button, Form, FormControl, Row, Col } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
 import "../style/styleJob.css";
-<<<<<<< HEAD
-import {
-  faHome,
-  faBriefcase,
-  faMapMarkedAlt,
-} from "@fortawesome/free-solid-svg-icons";
+
+import { faBriefcase, faMapMarkedAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../style/StylePagination.css";
-=======
-import { faBriefcase, faMapMarkedAlt} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import "../style/StylePagination.css"
-
->>>>>>> 05b8587fbff5d98378199e5784e475cfb4d00b93
 
 const axios = require("axios");
 export default class JobsComponent extends Component {
@@ -129,104 +119,54 @@ export default class JobsComponent extends Component {
   render() {
     return (
       <div>
-        <div className="pt-2">
-<<<<<<< HEAD
-          <div className="padre">
-            <Row>
-              <Col>
-                <Form inline className="Busqueda">
-                  <FormControl
-                    className="BarSearch"
-                    type="text"
-                    placeholder="Search"
-                  />
-                  <Button variant="outline-secondary">Search</Button>
-                </Form>
-              </Col>
-              <Col>
-                <div className="categoria">
-                  <select name="Categoria" className="form-control">
-                    {this.state.categories.map((cat) => (
-                      <option
-                        key={cat.Category_ID}
-                        value={cat.Category_Name}
-                        onClick={() => {
-                          this.setState({ currentCategory: cat.Category_ID });
-                          this.getWorks();
-                        }}
-                      >
-                        {cat.Category_Name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </Col>
-            </Row>
-            <div className="pt-2">{this.renderJobs()}</div>
-            <ReactPaginate
-              previousLabel={"prev"}
-              nextLabel={"next"}
-              breakLabel={"..."}
-              breakClassName={"break-me"}
-              pageCount={this.state.pageCount}
-              marginPagesDisplayed={2}
-              pageRangeDisplayed={5}
-              onPageChange={this.handlePageClick}
-              containerClassName={"pagination"}
-              subContainerClassName={"pages pagination"}
-              activeClassName={"active"}
-            />
-          </div>
+        <div className="pt-2"></div>
+        <div className="padre">
+          <Row>
+            <Col>
+              <Form inline className="Busqueda">
+                <FormControl
+                  className="BarSearch"
+                  type="text"
+                  placeholder="Search"
+                />
+                <Button variant="outline-secondary">Search</Button>
+              </Form>
+            </Col>
+            <Col>
+              <div className="categoria">
+                <select name="Categoria" className="form-control">
+                  {this.state.categories.map((cat) => (
+                    <option
+                      key={cat.Category_ID}
+                      value={cat.Category_Name}
+                      onClick={() => {
+                        this.setState({ currentCategory: cat.Category_ID });
+                        this.getWorks();
+                      }}
+                    >
+                      {cat.Category_Name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </Col>
+          </Row>
+          <div className="pt-2">{this.renderJobs()}</div>
+          <ReactPaginate
+            previousLabel={"prev"}
+            nextLabel={"next"}
+            breakLabel={"..."}
+            breakClassName={"break-me"}
+            pageCount={this.state.pageCount}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={5}
+            onPageChange={this.handlePageClick}
+            containerClassName={"pagination"}
+            subContainerClassName={"pages pagination"}
+            activeClassName={"active"}
+          />
         </div>
-=======
-          </div>
-      <div className="padre">
-        <Row>
-        <Col>
-        <Form inline className="Busqueda">
-      <FormControl className="BarSearch" type="text" placeholder="Search" />
-      <Button variant="outline-secondary">Search</Button>
-    </Form>
-    </Col>
-    <Col>
-        <div className="categoria">
-          <select name="Categoria" className="form-control">
-            {this.state.categories.map((cat) => (
-              <option
-                key={cat.Category_ID}
-                value={cat.Category_Name}
-                onClick={() => {
-                  this.setState({ currentCategory: cat.Category_ID });
-                  this.getWorks();
-                }}
-              >
-                {cat.Category_Name}
-              </option>
-            ))}
-          </select>
-        </div>
-        
-        </Col>
-        </Row><div className="pt-2">{this.renderJobs()}</div>
-        <ReactPaginate
-          previousLabel={"prev"}
-          nextLabel={"next"}
-          breakLabel={"..."}
-          breakClassName={"break-me"}
-          pageCount={this.state.pageCount}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={5}
-          onPageChange={this.handlePageClick}
-          containerClassName={"pagination"}
-          subContainerClassName={"pages pagination"}
-          activeClassName={"active"}
-        />
-        </div>
->>>>>>> 05b8587fbff5d98378199e5784e475cfb4d00b93
       </div>
-    
-
-      
     );
   }
 }
