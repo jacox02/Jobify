@@ -45,12 +45,12 @@ export default class WDetailsComponent extends Component {
     return (
       <div>
         <Card className="Jobs">
-          <Card.Header>{`Empresa: ${this.state.Work.Company_Name}`}</Card.Header>
+          <Card.Header className="Header">{`Empresa: ${this.state.Work.Company_Name}`}</Card.Header>
           <Card.Body>
             <Card.Title>{this.state.Work.Work_Title}</Card.Title>
             <Card.Text>{this.state.Work.Description}</Card.Text>
-            <Card.Text>Correo:{this.state.Work.Email}</Card.Text>
-            <Card.Text>Ubicacion: {this.state.Work.Location}</Card.Text>
+            <Card.Text><b>Correo:</b> {this.state.Work.Email}</Card.Text>
+            <Card.Text><b>Ubicacion:</b> {this.state.Work.Location}</Card.Text>
             <Button>Postularse</Button>
           </Card.Body>
         </Card>
