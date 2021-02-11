@@ -35,7 +35,7 @@ app.get("/Works/:id/List", (req, res) => {
 
 app.get("/Works/:id/Details", (req, res) => {
   connection.query(
-    `select * from Categories C, Works W WHERE W.Category_ID = C.Category_ID and Work_ID = ${req.params.id}`,
+    `select * from Categories C, Works W, Companies T where W.Category_ID = C.Category_ID AND W.Work_ID = ${req.params.id} AND W.Company_ID = T.Company_ID ORDER BY Publish_Date DESC;`,
     (err, results) => {
       if (err) throw err;
       res.send(results);

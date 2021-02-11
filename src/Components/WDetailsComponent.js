@@ -40,13 +40,12 @@ export default class WDetailsComponent extends Component {
   }
   componentDidMount() {
     this.getWorkDetails();
-    console.log(this.props.match.params.id);
   }
   render() {
     return (
       <div>
         <Card className="Jobs">
-          <Card.Header>{`${this.state.Work.Company_Name} ID: ${this.props.match.params.id}`}</Card.Header>
+          <Card.Header>{`Empresa: ${this.state.Work.Company_Name}`}</Card.Header>
           <Card.Body>
             <Card.Title>{this.state.Work.Work_Title}</Card.Title>
             <Card.Text>{this.state.Work.Description}</Card.Text>
