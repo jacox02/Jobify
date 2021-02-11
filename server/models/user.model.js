@@ -19,9 +19,6 @@ module.exports = (sequalize, Sequalize) => {
     User_Role: {
       type: Sequalize.STRING(255),
     },
-    User_Token: {
-      type: Sequalize.STRING(255),
-    },
   });
   return User;
 };

@@ -13,7 +13,9 @@ export default class AllCategoriesComponent extends Component {
   }
   getWorkDetails() {
     axios
-      .get(`http://localhost:3050/Works/${this.props.match.params.id}/List`)
+      .get(
+        `${process.env.REACT_APP_API_URL}/Works/${this.props.match.params.id}/List`
+      )
       .then((res) => {
         this.setState({ Works: res.data });
       })

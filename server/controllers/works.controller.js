@@ -21,6 +21,8 @@ exports.create = (req, res) => {
     Email: req.body.email,
     Apply_Method: req.body.applymethod,
     Description: req.body.description,
+    Posted_By: req.body.User_ID,
+    //Me quede aca poniendo que el formulario mande el ID de usuario a la base de datos para poder editar el trabajo segun que usuario para traer una vista con los trabajos posteado por ese usuario o empresa para que rafo genere la vista
     createdAt: "2021-02-09T21:38:39.000Z",
     updatedAt: "2021-02-09T21:38:39.000Z",
   };

@@ -28,9 +28,9 @@ app.engine("jsx", require("express-react-views").createEngine());
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-//API ROUTES
+
 require("./routes/works.routes")(app);
 require("./routes/category.routes")(app);
 require("./routes/user.routes")(app);
 require("./routes/companies.routes")(app);
-//Views routes
+require("./routes/auth.routes")(app);

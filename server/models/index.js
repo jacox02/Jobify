@@ -27,5 +27,24 @@ db.works = require("./works.model")(sequelize, Sequelize);
 db.users = require("./user.model")(sequelize, Sequelize);
 db.companie = require("./companies.model")(sequelize, Sequelize);
 db.categories = require("./category.model")(sequelize, Sequelize);
+db.role = require("./role.model")(sequelize, Sequelize);
+
+db.role.belongsToMany(db.users, {
+  through: "user_roles",
+  foreignKey: "roleId",
+  otherKey: "userId",
+});
+
+db.users.belongsToMany(db.role, {
+  through: "user_roles",
+  foreignKey: "userId",
+  otherKey: "roleId",
+});
+
+db.works.belongsToMany(db.users, {
+  through: "works_users",
+  foreignKey: "userId",
+  otherKey: "jobId",
+});
 
 module.exports = db;

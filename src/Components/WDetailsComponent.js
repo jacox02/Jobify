@@ -30,7 +30,9 @@ export default class WDetailsComponent extends Component {
   }
   getWorkDetails() {
     axios
-      .get(`http://localhost:3050/Works/${this.props.match.params.id}/Details`)
+      .get(
+        `${process.env.REACT_APP_API_URL}/Works/${this.props.match.params.id}/Details`
+      )
       .then((res) => {
         this.setState({ Work: res.data[0] });
       })
@@ -49,9 +51,15 @@ export default class WDetailsComponent extends Component {
           <Card.Body>
             <Card.Title>{this.state.Work.Work_Title}</Card.Title>
             <Card.Text>{this.state.Work.Description}</Card.Text>
-            <Card.Text><b>Correo:</b> {this.state.Work.Email}</Card.Text>
-            <Card.Text><b>Ubicacion:</b> {this.state.Work.Location}</Card.Text>
-            <Button variant="secondary" block  >Postularse</Button>
+            <Card.Text>
+              <b>Correo:</b> {this.state.Work.Email}
+            </Card.Text>
+            <Card.Text>
+              <b>Ubicacion:</b> {this.state.Work.Location}
+            </Card.Text>
+            <Button variant="secondary" block>
+              Postularse
+            </Button>
           </Card.Body>
         </Card>
       </div>

@@ -9,7 +9,7 @@ module.exports = (sequelize, Sequelize) => {
     },
     Company_Logo: {
       type: Sequelize.STRING(300),
-      allowNull: false,
+      allowNull: true,
     },
     Company_Name: {
       type: Sequelize.STRING(255),

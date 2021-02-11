@@ -2,7 +2,18 @@ const db = require("../models");
 const Users = db.users;
 const Op = db.Sequelize.Op;
 
-exports.create = (req, res) => {};
-exports.login = (req, res) => {};
-exports.update = (req, res) => {};
-exports.delete = (req, res) => {};
+exports.allAccess = (req, res) => {
+  res.status(200).send("Public Content.");
+};
+
+exports.userBoard = (req, res) => {
+  res.status(200).send("User Content.");
+};
+
+exports.adminBoard = (req, res) => {
+  res.status(200).send("Admin Content.");
+};
+
+exports.moderatorBoard = (req, res) => {
+  res.status(200).send("Moderator Content.");
+};

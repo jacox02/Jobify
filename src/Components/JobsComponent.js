@@ -27,7 +27,9 @@ export default class JobsComponent extends Component {
 
   getWorks() {
     axios
-      .get(`http://localhost:3050/Works/${this.state.currentCategory}/List`)
+      .get(
+        `${process.env.REACT_APP_API_URL}/Works/${this.state.currentCategory}/List`
+      )
       .then((response) => {
         this.setState({ works: response.data });
         const data = response.data;
@@ -49,7 +51,7 @@ export default class JobsComponent extends Component {
 
   getCategories() {
     axios
-      .get("http://localhost:3050/Works/Categories")
+      .get(`${process.env.REACT_APP_API_URL}/Works/Categories`)
       .then((response) => {
         this.setState({ categories: response.data });
       })

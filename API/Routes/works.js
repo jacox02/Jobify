@@ -13,6 +13,30 @@ app.get("/Works/List", (req, res) => {
   );
 });
 
+app.get("/Works/:searchparam/jobList", (req, res) => {
+  connection.query(
+    `select * from  Works w
+     inner join Categories ca
+     on ca.Category_ID  = w.Category_ID
+     inner join Companies c
+     on c.Company_ID = w.Company_ID
+     where w.Location like '%${req.params.searchparam}%'
+     or w.Position like '%${req.params.searchparam}%'
+     or c.Company_Name like '%${req.params.searchparam}%'
+     or w.Work_Title like '%${req.params.searchparam}%'`,
+    (err, results) => {
+      if (err)
+        throw (
+          err || {
+            message:
+              "Hubo un error buscando los trabajos, contacte con soporte tecnico",
+          }
+        );
+      res.send(results);
+    }
+  );
+});
+
 app.get("/Works/:id/List", (req, res) => {
   if (req.params.id == "1") {
     connection.query(
