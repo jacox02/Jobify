@@ -30,7 +30,7 @@ export default class JobsComponent extends Component {
           this.state.offset,
           this.state.offset + this.state.perPage
         );
-
+        this.renderJobs(data);
         this.setState({
           pageCount: Math.ceil(data.length / this.state.perPage),
           orgtableData: response.data,
@@ -41,6 +41,7 @@ export default class JobsComponent extends Component {
         console.log(`There was an error: ${error}`);
       });
   }
+
   getCategories() {
     axios
       .get("http://localhost:3050/Works/Categories")
@@ -51,6 +52,7 @@ export default class JobsComponent extends Component {
         console.log(`There was an error: ${error}`);
       });
   }
+
   handlePageClick = (e) => {
     const selectedPage = e.selected;
     const offset = selectedPage * this.state.perPage;
@@ -75,20 +77,13 @@ export default class JobsComponent extends Component {
       works: slice,
     });
   }
-  getCategoryJobs(categoryID) {
-    console.log(`This is the ctegory obtained from the dropdown${categoryID}`);
-    console.log(this.state.currentCategory);
-    axios.get(`http://localhost:3050/Works/${categoryID}/List`).then((res) => {
-      console.log(res);
-    });
-    this.renderJobs();
-    console.log(this.state.works);
-  }
+
   componentDidMount() {
     this.getWorks();
     this.getCategories();
     this.renderJobs();
   }
+
   renderJobs() {
     return this.state.works.map((work) => {
       return (
@@ -115,6 +110,7 @@ export default class JobsComponent extends Component {
   render() {
     return (
       <div>
+        <div>Category: {this.state.currentCategory}</div>
         <div className="pt-2">
           <select name="Categoria" className="form-control">
             {this.state.categories.map((cat) => (
@@ -124,8 +120,6 @@ export default class JobsComponent extends Component {
                 onClick={() => {
                   this.setState({ currentCategory: cat.Category_ID });
                   this.getWorks();
-                  this.getCategoryJobs(cat.Category_ID);
-                  this.renderJobs();
                 }}
               >
                 {cat.Category_Name}

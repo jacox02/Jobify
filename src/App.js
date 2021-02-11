@@ -11,7 +11,7 @@ import CategoriesComponent from "./Components/CategoryComponent";
 import AllCategoriesComponent from "./Components/AllJobsCategory";
 import PostJobComponent from "./Components/PostJobComponent";
 
-function App(props) {
+function App() {
   return (
     <div className="App">
       <NavbarComponent></NavbarComponent>
@@ -21,7 +21,7 @@ function App(props) {
             path="/Works/:id/Details"
             component={WDetailsComponent}
           ></Route>
-          {/*<Route path="/AddOffer" component={PostJobComponent}></Route>*/}
+
           <Route
             path="/AddOffer"
             component={withAuthenticationRequired(PostJobComponent)}
