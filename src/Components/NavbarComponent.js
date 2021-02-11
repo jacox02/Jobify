@@ -15,7 +15,7 @@ const NavbarComponent = React.memo(function NavbarComponent() {
       );
     } else {
       return (
-        <Button variant="outline-success" onClick={() => loginWithRedirect()}>
+        <Button variant="success" onClick={() => loginWithRedirect()}>
           Login
         </Button>
       );

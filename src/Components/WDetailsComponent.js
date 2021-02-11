@@ -45,7 +45,11 @@ export default class WDetailsComponent extends Component {
     return (
       <div>
         <Card className="Jobs">
+<<<<<<< HEAD
           <Card.Header>{`Empresa: ${this.state.Work.Company_Name}`}</Card.Header>
+=======
+          <Card.Header className="Header">{`${this.state.Work.Company_Name} ID: ${this.props.match.params.id}`}</Card.Header>
+>>>>>>> 05b8587fbff5d98378199e5784e475cfb4d00b93
           <Card.Body>
             <Card.Title>{this.state.Work.Work_Title}</Card.Title>
             <Card.Text>{this.state.Work.Description}</Card.Text>
