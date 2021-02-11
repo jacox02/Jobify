@@ -19,19 +19,18 @@ const corsOption = {
 app.use(morgan("dev"));
 app.use(cors(corsOption));
 app.use(bodyParser.json());
-
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
-  res.json({
-    message: "Working server",
-  });
-});
+app.set("views", __dirname + "/views");
+app.set("view engine", "jsx");
+app.engine("jsx", require("express-react-views").createEngine());
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+//API ROUTES
 require("./routes/works.routes")(app);
 require("./routes/category.routes")(app);
 require("./routes/user.routes")(app);
 require("./routes/companies.routes")(app);
+//Views routes

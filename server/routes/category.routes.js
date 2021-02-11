@@ -4,7 +4,7 @@ module.exports = (app) => {
 
   router.post("/", Category.create);
   router.get("/List", Category.findAll);
-  router.get("/:id/WorkList", Category.findAllJobs);
+  router.get("/:id/WorkList", Category.findJobsById);
   router.put("/:id/update", Category.update);
   router.delete("/:id/delete", Category.delete);
 

@@ -25,8 +25,22 @@ exports.create = (req, res) => {
       });
     });
 };
-exports.findAll = (req, res) => {};
-exports.findAllJobs = (req, res) => {};
+exports.findAll = (req, res) => {
+  Category.findAll()
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.send({
+        message:
+          err ||
+          "There was an error, try again, if problem keeps happening, please contact support",
+      });
+    });
+};
+exports.findJobsById = (req, res) => {
+  const id = req.body.Work_ID;
+};
 exports.findOne = (req, res) => {};
 exports.update = (req, res) => {};
 exports.delete = (req, res) => {};

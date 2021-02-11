@@ -7,7 +7,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import NavbarComponent from "./Components/NavbarComponent";
 import WDetailsComponent from "./Components/WDetailsComponent";
 import Jobs from "./Components/JobsComponent";
-import AllCategoriesComponent from "./Components/AllJobsCategory";
 import PostJobComponent from "./Components/PostJobComponent";
 
 function App() {
