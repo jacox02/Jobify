@@ -29,7 +29,6 @@ export default class AllCategoriesComponent extends Component {
     return this.state.Works.map((work) => {
       return (
         <div key={work.Work_ID}>
-          <div>Categoria: {work.Category_Name}</div>
           <Card style={{ width: "18rem" }}>
             <Card.Body>
               <Card.Title>{work.Work_Title}</Card.Title>

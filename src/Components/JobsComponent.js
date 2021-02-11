@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Card, Button, Form, FormControl, Row, Col } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
 import "../style/styleJob.css";
-import { faHome, faBriefcase, faMapMarkedAlt} from '@fortawesome/free-solid-svg-icons';
+import { faBriefcase, faMapMarkedAlt} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import "../style/StylePagination.css"
 
@@ -110,12 +110,9 @@ export default class JobsComponent extends Component {
 
   render() {
     return (
-<<<<<<< HEAD
       <div>
-        <div>Category: {this.state.currentCategory}</div>
         <div className="pt-2">
-=======
-      
+          </div>
       <div className="padre">
         <Row>
         <Col>
@@ -126,7 +123,6 @@ export default class JobsComponent extends Component {
     </Col>
     <Col>
         <div className="categoria">
->>>>>>> d5a6397ac6afffc8eecb5ec6e7b04227e1929469
           <select name="Categoria" className="form-control">
             {this.state.categories.map((cat) => (
               <option
@@ -158,9 +154,11 @@ export default class JobsComponent extends Component {
           subContainerClassName={"pages pagination"}
           activeClassName={"active"}
         />
-
-
+        </div>
       </div>
+    
+
+      
     );
   }
 }
