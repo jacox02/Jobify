@@ -156,7 +156,8 @@ export default class JobsComponent extends Component {
             </Col>
           </Row>
           <div className="pt-2">{this.renderJobs()}</div>
-          <ReactPaginate
+          <ReactPaginate 
+            className="Paginate"
             previousLabel={"prev"}
             nextLabel={"next"}
             breakLabel={"..."}

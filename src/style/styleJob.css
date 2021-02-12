@@ -55,3 +55,9 @@ body{
   -webkit-line-clamp: 2;
   line-clamp: 2;
 }
+
+ReactPaginate {
+    margin-top:3%;
+    margin-left: auto;
+    margin-right: auto;
+}
