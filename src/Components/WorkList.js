@@ -15,7 +15,7 @@ export default class WorkList extends Component {
   getWorkList() {
     axios
       .get(
-        `${process.env.REACT_APP_API_URL}/Works/${"lapara453@gmail.com"}/List`
+        `${process.env.REACT_APP_API_URL}/myWorks/${"lapara453@gmail.com"}/List`
       )
       .then((response) => {
         this.setState({

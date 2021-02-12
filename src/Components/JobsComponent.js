@@ -33,6 +33,7 @@ export default class JobsComponent extends Component {
         `${process.env.REACT_APP_API_URL}/Works/${this.state.currentCategory}/List`
       )
       .then((response) => {
+        console.log(response.data);
         this.setState({ works: response.data });
         const data = response.data;
         const slice = data.slice(
