@@ -21,6 +21,7 @@ export default class JobsComponent extends Component {
       orgtableData: [],
       perPage: 10,
       currentPage: 0,
+      Description: "",
     };
     this.handlePageClick = this.handlePageClick.bind(this);
   }
@@ -104,6 +105,7 @@ export default class JobsComponent extends Component {
               <Card.Text>
                 <FontAwesomeIcon icon={faMapMarkedAlt} /> {work.Location}
               </Card.Text>
+              <Card.Text className="cortar">{work.Description}</Card.Text>
               <Button
                 className="VerMas"
                 variant="outline-secondary"
