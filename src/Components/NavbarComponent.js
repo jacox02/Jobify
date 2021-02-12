@@ -1,6 +1,5 @@
 import React from "react";
 import { Navbar, Nav, NavDropdown, Button } from "react-bootstrap";
-
 import { useAuth0 } from "@auth0/auth0-react";
 
 const NavbarComponent = React.memo(function NavbarComponent() {
@@ -10,7 +9,7 @@ const NavbarComponent = React.memo(function NavbarComponent() {
     if (isAuthenticated) {
       return (
         <Button variant="warning" onClick={() => logout()}>
-          <FontAwesomeIcon icon={faBriefcase} />Logout
+          Logout
         </Button>
       );
     } else {
