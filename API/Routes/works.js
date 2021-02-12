@@ -37,7 +37,7 @@ app.get("/Works/:searchparam/jobList", (req, res) => {
   );
 });
 
-app.get("/myWorks/:ownermail", (req, res) => {
+app.get("/myWorks/:ownermail/List", (req, res) => {
   connection.query(
     `SELECT * FROM Works WHERE Owner_Email= '${req.params.ownermail}'`,
     (err, result) => {
