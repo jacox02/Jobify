@@ -10,7 +10,7 @@ const NavbarComponent = React.memo(function NavbarComponent() {
     if (isAuthenticated) {
       return (
         <Button variant="warning" onClick={() => logout()}>
-          Logout
+          <FontAwesomeIcon icon={faBriefcase} />Logout
         </Button>
       );
     } else {
