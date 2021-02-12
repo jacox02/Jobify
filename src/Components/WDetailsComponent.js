@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import { Card, Button } from "react-bootstrap";
-import { faBriefcase, faMapMarkedAlt, faBuilding, faEnvelope, faPaperPlane} from "@fortawesome/free-solid-svg-icons";
+import {
+  faBriefcase,
+  faMapMarkedAlt,
+  faBuilding,
+  faEnvelope,
+  faPaperPlane,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../style/styleWorkDetail.css";
 
@@ -48,18 +54,30 @@ export default class WDetailsComponent extends Component {
     return (
       <div>
         <Card className="Jobs">
-          <Card.Header className="Header"><FontAwesomeIcon icon={faBuilding} /> {`Empresa: ${this.state.Work.Company_Name}`}</Card.Header>
+          <Card.Header className="Header">
+            <FontAwesomeIcon icon={faBuilding} />
+            {`Empresa: ${this.state.Work.Company_Name}`}
+          </Card.Header>
           <Card.Body>
-            <Card.Title><FontAwesomeIcon icon={faBriefcase} /> {this.state.Work.Work_Title}</Card.Title>
+            <Card.Title>
+              <FontAwesomeIcon icon={faBriefcase} />
+              {this.state.Work.Work_Title}
+            </Card.Title>
             <Card.Text>{this.state.Work.Description}</Card.Text>
             <Card.Text>
-            <FontAwesomeIcon icon={faEnvelope} /> <b>Correo:</b> {this.state.Work.Email}
+              <FontAwesomeIcon icon={faEnvelope} /> <b>Correo:</b>
+              {this.state.Work.Email}
             </Card.Text>
             <Card.Text>
-            <FontAwesomeIcon icon={faMapMarkedAlt} /> <b>Ubicacion:</b> {this.state.Work.Location}
+              <FontAwesomeIcon icon={faMapMarkedAlt} /> <b>Ubicacion:</b>
+              {this.state.Work.Location}
             </Card.Text>
-            <Button variant="secondary" block>
-            <FontAwesomeIcon icon={ faPaperPlane}/> Postularse
+            <Button
+              variant="secondary"
+              block
+              href={`/Works/${this.state.Work.Work_ID}/Postulate`}
+            >
+              <FontAwesomeIcon icon={faPaperPlane} /> Postularse
             </Button>
           </Card.Body>
         </Card>

@@ -22,6 +22,7 @@ export default class JobsComponent extends Component {
       perPage: 10,
       currentPage: 0,
       Description: "",
+      UserInfo: {},
     };
     this.handlePageClick = this.handlePageClick.bind(this);
   }
@@ -156,7 +157,7 @@ export default class JobsComponent extends Component {
             </Col>
           </Row>
           <div className="pt-2">{this.renderJobs()}</div>
-          <ReactPaginate 
+          <ReactPaginate
             className="Paginate"
             previousLabel={"prev"}
             nextLabel={"next"}

@@ -1,8 +1,8 @@
 const db = require("../models");
-const Roles = db.role;
+const Role = db.role;
 const User = db.users;
 
-checkAlreadyRegisteredData = (req, res, next) => {
+checkRegisteredMail = (req, res, next) => {
   User.findOne({
     where: {
       User_Email: req.body.useremail,
@@ -10,15 +10,32 @@ checkAlreadyRegisteredData = (req, res, next) => {
   }).then((user) => {
     if (user) {
       res.status(400).send({
-        message: `The next mail ${req.body.useremail} is already registered`,
+        message: "Failed! Email is already in use!",
       });
       return;
     }
+    next();
   });
+};
+
+checkRolesExisted = (req, res, next) => {
+  if (req.body.userrole) {
+    for (let i = 0; i < req.body.userrole.length; i++) {
+      if (!Role.includes(req.body.userrole[i])) {
+        res.status(400).send({
+          message: "Failed! Role does not exist = " + req.body.userrole[i],
+        });
+        return;
+      }
+    }
+  }
+
   next();
 };
+
 const verifySignUp = {
-  checkAlreadyRegisteredData: checkAlreadyRegisteredData,
+  checkRegisteredMail: checkRegisteredMail,
+  checkRolesExisted: checkRolesExisted,
 };
 
 module.exports = verifySignUp;

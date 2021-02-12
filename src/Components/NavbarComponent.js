@@ -23,16 +23,22 @@ const NavbarComponent = React.memo(function NavbarComponent() {
 
   return (
     <div>
-      <Navbar variant="dark" expand="lg" className="Navbar"> 
+      <Navbar variant="dark" expand="lg" className="Navbar">
         <Navbar.Brand href="/">Jobify</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
-          <Nav.Link href="/">Home</Nav.Link>
-          <Nav.Link href="/AddOffer">Add job</Nav.Link>
-        </Nav>
           <Nav className="mr-auto">
+            <Nav.Link href="/">Home</Nav.Link>
+            <NavDropdown title="Trabajos" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/AddOffer">
+                Agregar trabajo
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/Works/:ownermail/List">
+                Mis trabajos
+              </NavDropdown.Item>
+            </NavDropdown>
           </Nav>
+          <Nav className="mr-auto"></Nav>
           <>{userBarButton()}</>
         </Navbar.Collapse>
       </Navbar>

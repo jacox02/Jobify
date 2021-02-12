@@ -1,7 +1,7 @@
+const { verifySignUp } = require("../middleware");
+const controller = require("../controllers/auth.controller");
+
 module.exports = function (app) {
-  const { verifySignUp } = require("../middleware");
-  const controller = require("../controllers/auth.controller");
-  var router = require("express").Router();
   app.use(function (req, res, next) {
     res.header(
       "Access-Control-Allow-Headers",
@@ -11,15 +11,10 @@ module.exports = function (app) {
   });
 
   app.post(
-    "/signup",
-    [verifySignUp.checkAlreadyRegisteredData],
+    "/api/auth/signup",
+    [verifySignUp.checkRegisteredMail, verifySignUp.checkRolesExisted],
     controller.signup
   );
 
-  app.post("/signin", (req, res) => {
-    res.send({
-      path: "Hi",
-    });
-  });
-  app.use("/api/auth", router);
+  app.post("/api/auth/signin", controller.signin);
 };

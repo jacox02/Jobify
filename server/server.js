@@ -6,16 +6,29 @@ const morgan = require("morgan");
 require("dotenv").config();
 
 const db = require("./models/index");
-db.sequelize.sync({ force: false, syncOnAssociation: false }).then(() => {
+const Role = db.role;
+
+db.sequelize.sync({ force: true }).then(() => {
   console.log("Drop database and resync");
+  initial();
 });
 
 const PORT = process.env.SERVER_PORT;
 
 const corsOption = {
-  origin: "http://localhost:8081",
+  origin: "http://localhost:8080",
 };
+function initial() {
+  Role.create({
+    id: 1,
+    name: "user",
+  });
 
+  Role.create({
+    id: 2,
+    name: "admin",
+  });
+}
 app.use(morgan("dev"));
 app.use(cors(corsOption));
 app.use(bodyParser.json());

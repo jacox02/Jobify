@@ -37,6 +37,27 @@ app.get("/Works/:searchparam/jobList", (req, res) => {
   );
 });
 
+app.get("/Works/:ownermail/List", (req, res) => {
+  connection.query(
+    `SELECT * FROM Works WHERE Owner_Email= '${req.params.ownermail}'`,
+    (err, result) => {
+      if (err) {
+        res.send({
+          message: err || "There was an error!",
+        });
+      } else {
+        if (result.length < 1) {
+          res.send({
+            result: "Not work added yet! Please add One :D",
+          });
+        } else {
+          res.send(result);
+        }
+      }
+    }
+  );
+});
+
 app.get("/Works/:id/List", (req, res) => {
   if (req.params.id == "1") {
     connection.query(

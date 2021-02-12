@@ -67,7 +67,6 @@ isModeratorOrAdmin = (req, res, next) => {
 const authJwt = {
   verifyToken: verifyToken,
   isAdmin: isAdmin,
-  isModeratorOrAdmin: this.isModeratorOrAdmin,
 };
 
 module.exports = authJwt;
