@@ -1,0 +1,11 @@
+.FormPostulate{
+    width: 50%;
+    margin-top:6%;
+    margin-left: auto;
+    margin-bottom: 2%;
+    margin-right: auto;
+    padding:2% 2% 2% 2% ;
+    opacity: 0.9;
+  color: aliceblue;
+  background-color: #59D1BC;
+}
