@@ -23,6 +23,7 @@ export default class JobsComponent extends Component {
       currentPage: 0,
       Description: "",
       UserInfo: {},
+      searchParam: "",
     };
     this.handlePageClick = this.handlePageClick.bind(this);
   }
@@ -133,9 +134,58 @@ export default class JobsComponent extends Component {
                 <FormControl
                   className="BarSearch"
                   type="text"
-                  placeholder="Search"
+                  placeholder="React developer"
+                  onChange={(e) => {
+                    if (e.target.value.length == 1) {
+                      axios
+                        .get(`${process.env.REACT_APP_API_URL}/Works/1/List`)
+                        .then((response) => {
+                          this.setState({
+                            works: response.data,
+                          });
+                        })
+                        .catch((err) => {
+                          console.log(err);
+                        });
+                    } else {
+                      this.setState({
+                        searchParam: e.target.value,
+                      });
+                    }
+                  }}
                 />
-                <Button variant="outline-secondary">Search</Button>
+                <Button
+                  variant="outline-secondary"
+                  onClick={() => {
+                    if (this.state.searchParam.length < 1) {
+                      axios
+                        .get(`${process.env.REACT_APP_API_URL}/Works/1/List`)
+                        .then((response) => {
+                          this.setState({
+                            works: response.data,
+                          });
+                        })
+                        .catch((err) => {
+                          console.log(err);
+                        });
+                    } else {
+                      axios
+                        .get(
+                          `${process.env.REACT_APP_API_URL}/Works/${this.state.searchParam}/jobList`
+                        )
+                        .then((response) => {
+                          this.setState({
+                            works: response.data,
+                          });
+                        })
+                        .catch((err) => {
+                          console.log(err);
+                        });
+                    }
+                  }}
+                >
+                  Search
+                </Button>
               </Form>
             </Col>
             <Col>
@@ -147,6 +197,7 @@ export default class JobsComponent extends Component {
                       value={cat.Category_Name}
                       onClick={() => {
                         this.setState({ currentCategory: cat.Category_ID });
+                        console.log(cat.Category_Name);
                         this.getWorks();
                       }}
                     >
