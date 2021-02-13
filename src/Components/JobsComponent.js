@@ -196,9 +196,16 @@ export default class JobsComponent extends Component {
                       key={cat.Category_ID}
                       value={cat.Category_Name}
                       onClick={() => {
-                        this.setState({ currentCategory: cat.Category_ID });
-                        console.log(cat.Category_Name);
-                        this.getWorks();
+                        axios
+                          .get(
+                            `${process.env.REACT_APP_API_URL}/Works/${cat.Category_ID}/List`
+                          )
+                          .then((response) => {
+                            this.setState({ works: response.data });
+                          })
+                          .catch((error) => {
+                            console.log(error);
+                          });
                       }}
                     >
                       {cat.Category_Name}
