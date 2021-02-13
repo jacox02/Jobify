@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Table, Button } from "react-bootstrap";
-
+import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "../style/styleWorklist.css"
 const axios = require("axios");
 
 export default class WorkList extends Component {
@@ -37,8 +39,8 @@ export default class WorkList extends Component {
           <td>{row.Location}</td>
           <td>{row.Position}</td>
           <td>
-            <Button variant="outline-danger">D</Button>
-            <Button variant="outline-warning">E</Button>
+            <Button variant="outline-danger" className="Modificadores"><FontAwesomeIcon icon={faTrashAlt} /></Button>
+            <Button variant="outline-warning" className="Modificadores"><FontAwesomeIcon icon={faEdit}/></Button>
           </td>
         </tr>
       );
@@ -47,9 +49,9 @@ export default class WorkList extends Component {
   //Poner que con Auth mande el correo del usuario o transformarlo a React Functional Component
   render() {
     return (
-      <div>
+      <div className="List">
         <Table size="sm" variant="dark" striped hover>
-          <thead>
+          <thead >
             <tr>
               <td>ID</td>
               <td>Titulo</td>
