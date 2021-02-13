@@ -3,7 +3,7 @@ import { Card, Button, Form, FormControl, Row, Col } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
 import "../style/styleJob.css";
 
-import { faBriefcase, faMapMarkedAlt } from "@fortawesome/free-solid-svg-icons";
+import { faBriefcase, faMapMarkedAlt, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../style/StylePagination.css";
 
@@ -99,7 +99,7 @@ export default class JobsComponent extends Component {
     return this.state.works.map((work) => {
       return (
         <div key={work.Work_ID}>
-          <Card className="Job">
+          <Card className="Job  position-relative shadow p-3 mb-5 bg-body rounded">
             <Card.Header className="titulo">
               <FontAwesomeIcon icon={faBriefcase} /> {work.Work_Title}
             </Card.Header>
@@ -112,9 +112,11 @@ export default class JobsComponent extends Component {
               <Button
                 className="VerMas"
                 variant="outline-secondary"
+                size="sm"
                 href={`/Works/${work.Work_ID}/Details`}
               >
                 Ver mas
+                
               </Button>
             </Card.Body>
           </Card>
@@ -184,7 +186,7 @@ export default class JobsComponent extends Component {
                     }
                   }}
                 >
-                  Search
+                  <FontAwesomeIcon icon={faSearch}/>
                 </Button>
               </Form>
             </Col>
