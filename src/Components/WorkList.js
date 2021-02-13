@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Table, Button } from "react-bootstrap";
 import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "../style/styleWorklist.css"
+import "../style/styleWorklist.css";
 const axios = require("axios");
 
 export default class WorkList extends Component {
@@ -39,8 +39,12 @@ export default class WorkList extends Component {
           <td>{row.Location}</td>
           <td>{row.Position}</td>
           <td>
-            <Button variant="outline-danger" className="Modificadores"><FontAwesomeIcon icon={faTrashAlt} /></Button>
-            <Button variant="outline-warning" className="Modificadores"><FontAwesomeIcon icon={faEdit}/></Button>
+            <Button variant="outline-danger" className="Modificadores">
+              <FontAwesomeIcon icon={faTrashAlt} />
+            </Button>
+            <Button variant="outline-warning" className="Modificadores">
+              <FontAwesomeIcon icon={faEdit} />
+            </Button>
           </td>
         </tr>
       );
@@ -50,8 +54,8 @@ export default class WorkList extends Component {
   render() {
     return (
       <div className="List">
-        <Table size="sm" variant="dark" striped hover>
-          <thead >
+        <Table size="sm" variant="dark" rounded striped hover>
+          <thead>
             <tr>
               <td>ID</td>
               <td>Titulo</td>
