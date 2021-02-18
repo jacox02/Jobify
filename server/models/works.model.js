@@ -14,8 +14,8 @@ module.exports = (sequalize, Sequalize) => {
     Publish_Date: {
       type: Sequalize.DATE,
     },
-    Category_ID: {
-      type: Sequalize.INTEGER(11),
+    Owner_Email: {
+      type: Sequalize.STRING(100),
     },
     Work_Keywords: {
       type: Sequalize.STRING(255),
@@ -26,6 +26,7 @@ module.exports = (sequalize, Sequalize) => {
     WorkType: {
       type: Sequalize.STRING(255),
     },
+
     Location: {
       type: Sequalize.STRING(255),
     },

@@ -1,7 +1,8 @@
 const express = require("express");
-
 const app = express();
 const connection = require("../Database/database");
+
+const { formatData } = require("../assets/dateFormated");
 
 app.get("/Works/List", (req, res) => {
   connection.query(
@@ -13,9 +14,45 @@ app.get("/Works/List", (req, res) => {
   );
 });
 
+app.post("/works/add/", (req, res) => {
+  const {
+    title,
+    ownermail,
+    keyword,
+    joburl,
+    worktype,
+    worklocation,
+    position,
+    applyMethodMail,
+    applymethod,
+    description,
+    categoryid,
+  } = req.body;
+
+  const newJob = {
+    Work_Title: title,
+    Publish_Date: formatData(),
+    Owner_Email: ownermail,
+    Work_Keywords: keyword,
+    Job_URL: joburl,
+    WorkType: worktype,
+    Location: worklocation,
+    Position: position,
+    Email: applyMethodMail,
+    Apply_Method: applymethod,
+    Owner_Email: ownermail,
+    Description: description,
+    createdAt: formatData(),
+    updatedAt: formatData(),
+    Category_ID: categoryid,
+  };
+  console.log(newJob);
+  connection.query("INSERT INTO works set ?", [newJob]);
+});
+
 app.get("/myWorks/:ownermail/List", (req, res) => {
   connection.query(
-    `SELECT * FROM Works WHERE Owner_Email= '${req.params.ownermail}'`,
+    `SELECT * FROM works WHERE Owner_Email= '${req.params.ownermail}'`,
     (err, result) => {
       if (err) {
         res.send({
@@ -37,7 +74,7 @@ app.get("/myWorks/:ownermail/List", (req, res) => {
 app.get("/Works/:id/List", (req, res) => {
   if (req.params.id == "1") {
     connection.query(
-      `select * from Categories C, Works W where  W.Category_ID = C.Category_ID`,
+      `select * from categories C, works W where  W.Category_ID = C.Category_ID`,
       (err, results) => {
         if (err) throw err;
         res.send(results);
@@ -45,7 +82,7 @@ app.get("/Works/:id/List", (req, res) => {
     );
   } else {
     connection.query(
-      `select * from Categories C, Works W WHERE W.Category_ID = C.Category_ID AND W.Category_ID = ${req.params.id}`,
+      `select * from categories C, works W WHERE W.Category_ID = C.Category_ID AND W.Category_ID = ${req.params.id}`,
       (err, results) => {
         if (err) throw err;
         res.send(results);
@@ -89,7 +126,7 @@ app.get("/Works/:id/Details", (req, res) => {
 });
 
 app.get("/Works/Categories", (req, res) => {
-  connection.query("select * from Categories ", (err, results) => {
+  connection.query("select * from categories ", (err, results) => {
     if (err) throw err;
     res.send(results);
   });

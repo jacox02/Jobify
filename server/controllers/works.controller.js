@@ -10,7 +10,9 @@ exports.create = (req, res) => {
     return;
   }
   const work = {
+    //REMAKE THIS CREATE CONTROOLER
     Work_Title: req.body.title,
+    Category_ID: req.body.categoryId,
     Publish_Date: req.body.date,
     Category_ID: req.body.category,
     Work_Keywords: req.body.keywords,
@@ -19,12 +21,12 @@ exports.create = (req, res) => {
     Location: req.body.location,
     Position: req.body.position,
     Email: req.body.email,
+    Owner_Email: req.body.ownerEmail,
     Apply_Method: req.body.applymethod,
     Description: req.body.description,
-    Posted_By: req.body.User_ID,
-    //Me quede aca poniendo que el formulario mande el ID de usuario a la base de datos para poder editar el trabajo segun que usuario para traer una vista con los trabajos posteado por ese usuario o empresa para que rafo genere la vista
-    createdAt: "2021-02-09T21:38:39.000Z",
-    updatedAt: "2021-02-09T21:38:39.000Z",
+    Owener_Email: req.body.User_ID,
+    createdAt: Date.now(),
+    updatedAt: Date.now(),
   };
 
   Work.create(work)

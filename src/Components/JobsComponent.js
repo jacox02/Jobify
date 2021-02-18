@@ -2,10 +2,14 @@ import React, { Component } from "react";
 import { Card, Button, Form, FormControl, Row, Col } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
 import "../style/styleJob.css";
-
-import { faBriefcase, faMapMarkedAlt, faSearch } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../style/StylePagination.css";
+import {
+  faBriefcase,
+  faMapMarkedAlt,
+  faSearch,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import WorkService from "../services/works.service";
 
 const axios = require("axios");
 export default class JobsComponent extends Component {
@@ -116,7 +120,6 @@ export default class JobsComponent extends Component {
                 href={`/Works/${work.Work_ID}/Details`}
               >
                 Ver mas
-                
               </Button>
             </Card.Body>
           </Card>
@@ -186,7 +189,7 @@ export default class JobsComponent extends Component {
                     }
                   }}
                 >
-                  <FontAwesomeIcon icon={faSearch}/>
+                  <FontAwesomeIcon icon={faSearch} />
                 </Button>
               </Form>
             </Col>

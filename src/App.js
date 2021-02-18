@@ -30,7 +30,10 @@ function App() {
             path="/Works/:id/Postulate"
             component={withAuthenticationRequired(PostulateComponent)}
           ></Route>
-          <Route path="/Works/:ownermail/List" component={WorkList}></Route>
+          <Route
+            path="/Works/:ownermail/List"
+            component={withAuthenticationRequired(WorkList)}
+          ></Route>
           <Route exact path="/" component={Jobs}></Route>
         </Switch>
       </Router>
