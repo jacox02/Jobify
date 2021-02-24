@@ -1,21 +1,27 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
-
 export default function LoginComponet() {
   return (
     <Form>
-      <Form.Group controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
+      <Form.Group>
+        <Form.Label>Welcome</Form.Label>
+      </Form.Group>
+      <Form.Group controlId="formaBasicPassword">
+        <Form.Label>Email Address</Form.Label>
+        <Form.Control type="email" placeholder="enter email"/>
       </Form.Group>
 
-      <Form.Group controlId="formBasicPassword">
+      <Form.Group>
         <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
+        <Form.Control type="password" placeholder="password"/>
       </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
+      <Form.Group>
+        <Form.Label><a href="#">Forgot password?</a></Form.Label>
+      </Form.Group>
+      <Form.Group>
+        <Button variant="primary" type="submit">
+          Continue</Button>
+      </Form.Group>
     </Form>
   );
 }
