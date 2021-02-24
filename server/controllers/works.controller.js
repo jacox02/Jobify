@@ -10,11 +10,9 @@ exports.create = (req, res) => {
     return;
   }
   const work = {
-    //REMAKE THIS CREATE CONTROOLER
     Work_Title: req.body.title,
     Category_ID: req.body.categoryId,
     Publish_Date: req.body.date,
-    Category_ID: req.body.category,
     Work_Keywords: req.body.keywords,
     Job_URL: req.body.joburl,
     WorkType: req.body.worktype,
@@ -24,7 +22,6 @@ exports.create = (req, res) => {
     Owner_Email: req.body.ownerEmail,
     Apply_Method: req.body.applymethod,
     Description: req.body.description,
-    Owener_Email: req.body.User_ID,
     createdAt: Date.now(),
     updatedAt: Date.now(),
   };
@@ -57,8 +54,8 @@ exports.findAll = (req, res) => {
 };
 
 exports.findOneByID = (req, res) => {
-  const id = req.body.Work_ID;
-
+  const id = req.params.id;
+  console.log(id);
   Work.findByPk(id)
     .then((data) => {
       res.send({ data });

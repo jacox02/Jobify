@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
-export default function LoginComponet() {
+export default function LoginComponent() {
   return (
     <Form>
       <Form.Group>
@@ -8,19 +8,22 @@ export default function LoginComponet() {
       </Form.Group>
       <Form.Group controlId="formaBasicPassword">
         <Form.Label>Email Address</Form.Label>
-        <Form.Control type="email" placeholder="enter email"/>
+        <Form.Control type="email" placeholder="enter email" />
       </Form.Group>
 
       <Form.Group>
         <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="password"/>
+        <Form.Control type="password" placeholder="password" />
       </Form.Group>
       <Form.Group>
-        <Form.Label><a href="#">Forgot password?</a></Form.Label>
+        <Form.Label>
+          <a href="#">Forgot password?</a>
+        </Form.Label>
       </Form.Group>
       <Form.Group>
         <Button variant="primary" type="submit">
-          Continue</Button>
+          Continue
+        </Button>
       </Form.Group>
     </Form>
   );

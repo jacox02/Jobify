@@ -114,10 +114,13 @@ app.get("/Works/:searchparam/jobList", (req, res) => {
     }
   );
 });
-
+/*
+ *DELETED W.Company_ID = T.Company_ID
+ *And produces a fronted error cause in fronted requires the company name
+ */
 app.get("/Works/:id/Details", (req, res) => {
   connection.query(
-    `select * from Categories C, Works W, Companies T where W.Category_ID = C.Category_ID AND W.Work_ID = ${req.params.id} AND W.Company_ID = T.Company_ID ORDER BY Publish_Date DESC;`,
+    `select * from works where Work_ID = ${req.params.id}`,
     (err, results) => {
       if (err) throw err;
       res.send(results);

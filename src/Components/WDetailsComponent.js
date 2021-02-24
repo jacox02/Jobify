@@ -55,19 +55,21 @@ export default class WDetailsComponent extends Component {
       <div>
         <Card className="Jobs">
           <Card.Header className="Header">
-            <FontAwesomeIcon icon={faBuilding} /> {`Empresa: ${this.state.Work.Company_Name}`}
+            <FontAwesomeIcon icon={faBuilding} />{" "}
+            {`Empresa: ${this.state.Work.Company_Name}`}
           </Card.Header>
           <Card.Body>
             <Card.Title>
-              <FontAwesomeIcon icon={faBriefcase} /> {this.state.Work.Work_Title}
+              <FontAwesomeIcon icon={faBriefcase} />{" "}
+              {this.state.Work.Work_Title}
             </Card.Title>
             <Card.Text>{this.state.Work.Description}</Card.Text>
             <Card.Text>
-              <FontAwesomeIcon icon={faEnvelope} /> <b>Correo:</b>
+              <FontAwesomeIcon icon={faEnvelope} /> <b>Correo: </b>
               {this.state.Work.Email}
             </Card.Text>
             <Card.Text>
-              <FontAwesomeIcon icon={faMapMarkedAlt} /> <b>Ubicacion:</b>
+              <FontAwesomeIcon icon={faMapMarkedAlt} /> <b>Ubicacion: </b>
               {this.state.Work.Location}
             </Card.Text>
             <Button

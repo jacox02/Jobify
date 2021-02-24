@@ -24,8 +24,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressSession);
 
-app.use(require("./Routes/categories.js"));
 app.use(require("./Routes/works"));
+app.use(require("./Routes/categories"));
+app.use(require("./Routes/usersRoutes"));
+app.use(require("./Routes/auth"));
 
 app.get("/", (req, res) => {
   res.send({ message: "OK", code: 200 });

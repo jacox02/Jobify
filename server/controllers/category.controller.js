@@ -25,6 +25,7 @@ exports.create = (req, res) => {
       });
     });
 };
+
 exports.findAll = (req, res) => {
   Category.findAll()
     .then((data) => {

@@ -10,6 +10,8 @@ import WDetailsComponent from "./Components/WDetailsComponent";
 import Jobs from "./Components/JobsComponent";
 import PostJobComponent from "./Components/PostJobComponent";
 import WorkList from "./Components/WorkList";
+import NotFoundComponent from "./Components/NotFoundComponent";
+import LoginComponent from "./Components/LoginComponent";
 
 function App() {
   return (
@@ -21,7 +23,7 @@ function App() {
             path="/Works/:id/Details"
             component={WDetailsComponent}
           ></Route>
-
+          <Route path="/login" component={LoginComponent}></Route>
           <Route
             path="/AddOffer"
             component={withAuthenticationRequired(PostJobComponent)}
@@ -35,6 +37,7 @@ function App() {
             component={withAuthenticationRequired(WorkList)}
           ></Route>
           <Route exact path="/" component={Jobs}></Route>
+          <Route component={NotFoundComponent}></Route>
         </Switch>
       </Router>
     </div>
