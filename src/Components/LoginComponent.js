@@ -1,10 +1,11 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
+import "../style/styleLogin.css";
 export default function LoginComponent() {
   return (
-    <Form>
+    <Form className="formulario">
       <Form.Group>
-        <Form.Label>Welcome</Form.Label>
+        <center><h2>Welcome</h2></center>
       </Form.Group>
       <Form.Group controlId="formaBasicPassword">
         <Form.Label>Email Address</Form.Label>
