@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
-import "../style/styleLogin.css"
+import "../style/styleLogin.css";
 export default function LoginComponet() {
   return (
     <Form className="formulario">
