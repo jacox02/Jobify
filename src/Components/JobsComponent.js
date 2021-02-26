@@ -98,7 +98,7 @@ export default class JobsComponent extends Component {
 
   renderJobs() {
     if (this.state.works.length == 0) {
-      return <h1>No hay ningun trabajo de esta categoria :c </h1>;
+      return <h1>No hay ningun trabajo de esta categoria :c FIX TTHIS </h1>;
     } else {
       return this.state.works.map((work) => {
         return (
