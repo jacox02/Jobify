@@ -1,5 +1,14 @@
 import React, { Component } from "react";
-import { Card, Button, Form, FormControl, Row, Col } from "react-bootstrap";
+import {
+  Card,
+  Button,
+  Form,
+  FormControl,
+  Row,
+  Col,
+  Dropdown,
+  DropdownButton,
+} from "react-bootstrap";
 import ReactPaginate from "react-paginate";
 import "../style/styleJob.css";
 import "../style/StylePagination.css";
@@ -9,7 +18,6 @@ import {
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import WorkService from "../services/works.service";
 
 const axios = require("axios");
 export default class JobsComponent extends Component {
@@ -38,7 +46,6 @@ export default class JobsComponent extends Component {
         `${process.env.REACT_APP_API_URL}/Works/${this.state.currentCategory}/List`
       )
       .then((response) => {
-        console.log(response.data);
         this.setState({ works: response.data });
         const data = response.data;
         const slice = data.slice(
@@ -193,26 +200,28 @@ export default class JobsComponent extends Component {
                 </Button>
               </Form>
             </Col>
+
             <Col>
               <div className="categoria">
-                <select name="Categoria" className="form-control">
+                <select
+                  name="Categoria"
+                  className="form-control"
+                  onChange={(e) => {
+                    console.log(e.target.value);
+                    axios
+                      .get(
+                        `${process.env.REACT_APP_API_URL}/Works/${e.target.value}/List`
+                      )
+                      .then((response) => {
+                        this.setState({ works: response.data });
+                      })
+                      .catch((error) => {
+                        console.log(error);
+                      });
+                  }}
+                >
                   {this.state.categories.map((cat) => (
-                    <option
-                      key={cat.Category_ID}
-                      value={cat.Category_Name}
-                      onClick={() => {
-                        axios
-                          .get(
-                            `${process.env.REACT_APP_API_URL}/Works/${cat.Category_ID}/List`
-                          )
-                          .then((response) => {
-                            this.setState({ works: response.data });
-                          })
-                          .catch((error) => {
-                            console.log(error);
-                          });
-                      }}
-                    >
+                    <option key={cat.Category_ID} value={cat.Category_ID}>
                       {cat.Category_Name}
                     </option>
                   ))}

@@ -54,7 +54,7 @@ export default class WorkList extends Component {
   render() {
     return (
       <div className="List">
-        <Table size="sm" variant="dark" rounded striped hover>
+        <Table size="sm" variant="dark" striped hover>
           <thead>
             <tr>
               <td>ID</td>

@@ -6,7 +6,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 export default function PostJobComponent() {
   const { user } = useAuth0();
   //Add work poner a recoger toda la data y que la envie
-
   return (
     <div>
       <Form className="Post">
