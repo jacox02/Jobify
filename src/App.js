@@ -26,15 +26,15 @@ function App() {
           <Route path="/login" component={LoginComponent}></Route>
           <Route
             path="/AddOffer"
-            component={withAuthenticationRequired(PostJobComponent)}
+            component={PostJobComponent}
           />
           <Route
             path="/Works/:id/Postulate"
-            component={withAuthenticationRequired(PostulateComponent)}
+            component={PostulateComponent}
           ></Route>
           <Route
             path="/Works/:ownermail/List"
-            component={withAuthenticationRequired(WorkList)}
+            component={WorkList}
           ></Route>
           <Route exact path="/" component={Jobs}></Route>
           <Route component={NotFoundComponent}></Route>

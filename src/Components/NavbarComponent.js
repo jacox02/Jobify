@@ -17,7 +17,7 @@ const NavbarComponent = React.memo(function NavbarComponent() {
       );
     } else {
       return (
-        <Button variant="success" onClick={() => loginWithRedirect()}>
+        <Button variant="success" href="/login">
           Login
         </Button>
       );
