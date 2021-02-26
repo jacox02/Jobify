@@ -20,7 +20,6 @@ export default class CPanelComponents extends Component {
               .then((response) => {
                 console.log(response.data[0]);
                 this.setState({ perPage: response.data });
-                console.log(perPage)
               })
               .catch((error) => {
                 console.log(`There was an error: ${error}`);
