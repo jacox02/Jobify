@@ -1,14 +1,5 @@
 import React, { Component } from "react";
-import {
-  Card,
-  Button,
-  Form,
-  FormControl,
-  Row,
-  Col,
-  Dropdown,
-  DropdownButton,
-} from "react-bootstrap";
+import { Card, Button, Form, FormControl, Row, Col } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
 import "../style/styleJob.css";
 import "../style/StylePagination.css";
@@ -107,32 +98,36 @@ export default class JobsComponent extends Component {
   }
 
   renderJobs() {
-    return this.state.works.map((work) => {
-      return (
-        <div key={work.Work_ID}>
-          <Card className="Job  position-relative shadow p-3 mb-5 bg-body rounded">
-            <Card.Header className="titulo">
-              <FontAwesomeIcon icon={faBriefcase} /> {work.Work_Title}
-            </Card.Header>
-            <Card.Body>
-              <Card.Title>{work.Company_Name}</Card.Title>
-              <Card.Text>
-                <FontAwesomeIcon icon={faMapMarkedAlt} /> {work.Location}
-              </Card.Text>
-              <Card.Text className="cortar">{work.Description}</Card.Text>
-              <Button
-                className="VerMas"
-                variant="outline-secondary"
-                size="sm"
-                href={`/Works/${work.Work_ID}/Details`}
-              >
-                Ver mas
-              </Button>
-            </Card.Body>
-          </Card>
-        </div>
-      );
-    });
+    if (this.state.works.length == 0) {
+      return <h1>No hay ningun trabajo de esta categoria :c </h1>;
+    } else {
+      return this.state.works.map((work) => {
+        return (
+          <div key={work.Work_ID}>
+            <Card className="Job  position-relative shadow p-3 mb-5 bg-body rounded">
+              <Card.Header className="titulo">
+                <FontAwesomeIcon icon={faBriefcase} /> {work.Work_Title}
+              </Card.Header>
+              <Card.Body>
+                <Card.Title>{work.Company_Name}</Card.Title>
+                <Card.Text>
+                  <FontAwesomeIcon icon={faMapMarkedAlt} /> {work.Location}
+                </Card.Text>
+                <Card.Text className="cortar">{work.Description}</Card.Text>
+                <Button
+                  className="VerMas"
+                  variant="outline-secondary"
+                  size="sm"
+                  href={`/Works/${work.Work_ID}/Details`}
+                >
+                  Ver mas
+                </Button>
+              </Card.Body>
+            </Card>
+          </div>
+        );
+      });
+    }
   }
 
   render() {
