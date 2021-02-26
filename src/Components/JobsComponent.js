@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Card, Button, Form, FormControl, Row, Col } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
 import "../style/styleJob.css";
-import "../style/StylePagination.css";
 import {
   faBriefcase,
   faMapMarkedAlt,
