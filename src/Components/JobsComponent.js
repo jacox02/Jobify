@@ -21,13 +21,24 @@ export default class JobsComponent extends Component {
       tableData: [],
       currentCategory: 1,
       orgtableData: [],
-      perPage: 5,
+      perPage: [],
       currentPage: 0,
       Description: "",
       UserInfo: {},
       searchParam: "",
     };
     this.handlePageClick = this.handlePageClick.bind(this);
+  }
+  getperPage() {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/WorkQuantity`)
+      .then((response) => {
+        let quantity = response.data[0].Work_Quantity;
+        this.setState({ perPage: quantity });
+      })
+      .catch((error) => {
+        console.log(`There was an error: ${error}`);
+      });
   }
 
   getWorks() {
@@ -94,6 +105,7 @@ export default class JobsComponent extends Component {
     this.getWorks();
     this.getCategories();
     this.renderJobs();
+    this.getperPage();
   }
 
   renderJobs() {
