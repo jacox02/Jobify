@@ -12,6 +12,7 @@ import PostJobComponent from "./Components/PostJobComponent";
 import WorkList from "./Components/WorkList";
 import NotFoundComponent from "./Components/NotFoundComponent";
 import LoginComponent from "./Components/LoginComponent";
+import CPanelComponent from "./Components/CPanelComponents"
 
 function App() {
   return (
@@ -35,6 +36,10 @@ function App() {
           <Route
             path="/Works/:ownermail/List"
             component={WorkList}
+          ></Route>
+          <Route
+            path="/WorksQuantity"
+            component={CPanelComponent}
           ></Route>
           <Route exact path="/" component={Jobs}></Route>
           <Route component={NotFoundComponent}></Route>
