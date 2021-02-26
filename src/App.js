@@ -12,7 +12,7 @@ import PostJobComponent from "./Components/PostJobComponent";
 import WorkList from "./Components/WorkList";
 import NotFoundComponent from "./Components/NotFoundComponent";
 import LoginComponent from "./Components/LoginComponent";
-import CPanelComponent from "./Components/CPanelComponents"
+import CPanelComponent from "./Components/CPanelComponents";
 
 function App() {
   return (
@@ -25,22 +25,13 @@ function App() {
             component={WDetailsComponent}
           ></Route>
           <Route path="/login" component={LoginComponent}></Route>
-          <Route
-            path="/AddOffer"
-            component={PostJobComponent}
-          />
+          <Route path="/AddOffer" component={PostJobComponent} />
           <Route
             path="/Works/:id/Postulate"
             component={PostulateComponent}
           ></Route>
-          <Route
-            path="/Works/:ownermail/List"
-            component={WorkList}
-          ></Route>
-          <Route
-            path="/WorksQuantity"
-            component={CPanelComponent}
-          ></Route>
+          <Route path="/Works/:ownermail/List" component={WorkList}></Route>
+          <Route path="/WorksQuantity" component={CPanelComponent}></Route>
           <Route exact path="/" component={Jobs}></Route>
           <Route component={NotFoundComponent}></Route>
         </Switch>

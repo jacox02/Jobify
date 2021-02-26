@@ -21,7 +21,7 @@ export default class JobsComponent extends Component {
       tableData: [],
       currentCategory: 1,
       orgtableData: [],
-      perPage: 10,
+      perPage: 5,
       currentPage: 0,
       Description: "",
       UserInfo: {},
