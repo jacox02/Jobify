@@ -22,6 +22,9 @@ export default class CPanelComponents extends Component {
         console.log(`There was an error: ${error}`);
       });
   }
+
+  
+  
   componentDidMount() {
     this.getperPage();
   }

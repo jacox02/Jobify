@@ -29,7 +29,6 @@ export default class JobsComponent extends Component {
     };
     this.handlePageClick = this.handlePageClick.bind(this);
   }
-
   getWorks() {
     axios
       .get(
