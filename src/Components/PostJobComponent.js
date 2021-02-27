@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { Form, Col, Row, Button, ModalTitle, ModalBody } from "react-bootstrap";
 import "../style/PostJobStyle.css";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
+const MySwal = withReactContent(Swal);
 export default class PostJobComponent extends Component {
   constructor(props) {
     super(props);
@@ -129,6 +132,12 @@ export default class PostJobComponent extends Component {
                 onClick={(e) => {
                   e.preventDefault();
                   console.log(this.state.form);
+                  MySwal.fire({
+                    title: "Error!",
+                    text: "Do you want to continue",
+                    icon: "error",
+                    confirmButtonText: "Cool",
+                  });
                 }}
                 variant="secondary"
                 size="lg"
