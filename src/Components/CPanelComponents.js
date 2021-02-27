@@ -10,7 +10,12 @@ export default class CPanelComponents extends Component {
       perPage: [],
     };
   }
-
+  handleChange = async (e) => {
+    await this.setState({
+      perPage : this.state.perPage = e.target.value,
+    });
+    console.log(this.state.perPage)
+  };
   getperPage() {
     axios
       .get(`${process.env.REACT_APP_API_URL}/WorkQuantity`)
@@ -23,8 +28,18 @@ export default class CPanelComponents extends Component {
         console.log(`There was an error: ${error}`);
       });
   }
-
-  
+  updateperPage(){
+    axios
+    .post(`${process.env.REACT_APP_API_URL}/WorkQuantity/edit`, {
+      quantity: this.state.perPage,
+    })
+    .then((response) => {
+      console.log(response.data);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+  }
   
   componentDidMount() {
     this.getperPage();
@@ -41,10 +56,11 @@ export default class CPanelComponents extends Component {
             <Form.Control
               type="number"
               name="pagination"
-              value={this.state.perPage}
+              placeholder={`La cantidad de trabajos mostrados por pagina es: ` + this.state.perPage}
+              onChange={this.handleChange.bind(this)}
             />
           </Form.Group>
-          <Button className="btn-block bg-primary" onClick={this.getperPage}>
+          <Button className="btn-block bg-primary" onClick={this.updateperPage.bind(this)}>
             Guardar
           </Button>
         </Form>
