@@ -29,6 +29,18 @@ export default class JobsComponent extends Component {
     };
     this.handlePageClick = this.handlePageClick.bind(this);
   }
+  getperPage() {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/WorkQuantity`)
+      .then((response) => {
+        let quantity = response.data[0].Work_Quantity;
+        this.setState({ perPage: quantity });
+      })
+      .catch((error) => {
+        console.log(`There was an error: ${error}`);
+      });
+  }
+
   getWorks() {
     axios
       .get(
@@ -90,6 +102,7 @@ export default class JobsComponent extends Component {
   }
 
   componentDidMount() {
+    this.getperPage()
     this.getWorks();
     this.getCategories();
     this.renderJobs();
