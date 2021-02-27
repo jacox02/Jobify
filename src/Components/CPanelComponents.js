@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Button, Form } from "react-bootstrap";
-
+import { Button, Form, FormControl } from "react-bootstrap";
+import "../style/PanelControlSyle.css";
 const axios = require("axios");
 
 export default class CPanelComponents extends Component {
@@ -12,9 +12,9 @@ export default class CPanelComponents extends Component {
   }
   handleChange = async (e) => {
     await this.setState({
-      perPage: (this.state.perPage = e.target.value),
+      perPage : this.state.perPage = e.target.value,
     });
-    console.log(this.state.perPage);
+    console.log(this.state.perPage)
   };
   getperPage() {
     axios
@@ -28,19 +28,19 @@ export default class CPanelComponents extends Component {
         console.log(`There was an error: ${error}`);
       });
   }
-  updateperPage() {
+  updateperPage(){
     axios
-      .post(`${process.env.REACT_APP_API_URL}/WorkQuantity/edit`, {
-        quantity: this.state.perPage,
-      })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+    .post(`${process.env.REACT_APP_API_URL}/WorkQuantity/edit`, {
+      quantity: this.state.perPage,
+    })
+    .then((response) => {
+      console.log(response.data);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
   }
-
+  
   componentDidMount() {
     this.getperPage();
   }
@@ -49,26 +49,22 @@ export default class CPanelComponents extends Component {
       <div>
         <div className="display-1 text-center">Panel de Control</div>
         <Form>
+          <div className="container cpanel bg-light text-dark rounded mt-5 mb-5 ">
           <Form.Group>
-            <Form.Label className="display-4">
+            <Form.Label className="h3">
               Cantidad de trabajos por pagina
             </Form.Label>
             <Form.Control
               type="number"
               name="pagination"
-              placeholder={
-                `La cantidad de trabajos mostrados por pagina es: ` +
-                this.state.perPage
-              }
+              placeholder={`La cantidad de trabajos mostrados por pagina es: ` + this.state.perPage}
               onChange={this.handleChange.bind(this)}
             />
           </Form.Group>
-          <Button
-            className="btn-block bg-primary"
-            onClick={this.updateperPage.bind(this)}
-          >
+          <Button className="btn-block bg-primary" onClick={this.updateperPage.bind(this)}>
             Guardar
           </Button>
+          </div>
         </Form>
       </div>
     );
