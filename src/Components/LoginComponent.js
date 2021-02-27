@@ -3,12 +3,12 @@ import { Form, Button } from "react-bootstrap";
 import "../style/styleLogin.css";
 import { faSignInAlt, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+const axios = require("axios");
 class LoginComponent extends Component {
   state = {
     form: {
-      username: "",
-      password: "",
+      User_Email:"", 
+      User_Password:""
     },
   };
 
@@ -19,9 +19,17 @@ class LoginComponent extends Component {
         [e.target.name]: e.target.value,
       },
     });
-    console.log(this.state.form);
+    
   };
-
+  iniciarSesion=async()=>{
+    await axios.get({params: {User_Email: this.state.form.user.email, User_Password: this.state.form.user.password}})     
+    .then(response =>{
+      console.log(response.data);
+    })
+    .catch(error=>{
+      console.log(error);
+    })
+  }
   render() {
     return (
       <Form className="formulario">
@@ -33,7 +41,7 @@ class LoginComponent extends Component {
         <Form.Group controlId="formaBasicPassword">
           <Form.Label>Email Address</Form.Label>
           <Form.Control
-            name="username"
+            name="User_Email"
             type="email"
             placeholder="enter email"
             onChange={this.handleChange}
@@ -43,7 +51,7 @@ class LoginComponent extends Component {
         <Form.Group>
           <Form.Label>Password</Form.Label>
           <Form.Control
-            name="password"
+            name="User_Password"
             type="password"
             placeholder="password"
             onChange={this.handleChange}
@@ -60,7 +68,7 @@ class LoginComponent extends Component {
           </Button>
         </Form.Group>
         <Form.Group>
-          <Button className="Button" variant="warning" type="submit" block>
+          <Button className="Button" variant="warning" type="submit" block onClick={()=>this.iniciarSesion()}>
             Sign Up <FontAwesomeIcon icon={faUser} />
           </Button>
         </Form.Group>
