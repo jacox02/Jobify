@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Col, Row, Button, ModalTitle, ModalBody } from "react-bootstrap";
+import { Form, Col, Row, Button } from "react-bootstrap";
 import "../style/PostJobStyle.css";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -17,7 +17,6 @@ export default class PostJobComponent extends Component {
         workPosition: "",
         workDescription: "",
         workLocation: "",
-        workCategory: "",
         workKeywords: "",
         workWebSite: "",
         workEmail: "",
@@ -35,13 +34,19 @@ export default class PostJobComponent extends Component {
       },
     });
   };
-
+  //Methodo para checar que todos los campos esten llenos
+  checkFilledFields() {
+    if (true) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   componentDidMount() {
     axios
       .get(`${process.env.REACT_APP_API_URL}/categories/list`)
       .then((response) => {
         this.setState({ categories: response.data });
-        console.log(this.state.categories);
       })
       .catch((err) => {
         console.log(err.message);
@@ -128,17 +133,18 @@ export default class PostJobComponent extends Component {
 
           <Form.Group>
             <Form.Label>Categoria</Form.Label>
-            <Form.Control
+            <select
+              className="form-control"
               as="select"
               name="workCategory"
               onChange={this.handleChange}
             >
               {this.state.categories.map((category) => (
-                <option key={category.Category_ID}>
+                <option key={category.Category_ID} value={category.Category_ID}>
                   {category.Category_Name}
                 </option>
               ))}
-            </Form.Control>
+            </select>
           </Form.Group>
 
           <Form.Group>
@@ -156,35 +162,58 @@ export default class PostJobComponent extends Component {
               <Button
                 onClick={(e) => {
                   e.preventDefault();
-                  let data = JSON.parse(this.state.form);
-                  console.log(data);
-                  axios({
-                    method: "POST",
-                    url: "http://localhost:3050/works/add",
-                    data: data,
-                  })
-                    .then((res) => {
-                      console.log(res);
-                      let serverResponse = res.data.code;
-                      if (serverResponse == 200) {
-                        MySwal.fire({
-                          title: "Trabajo publicado",
-                          text: "Su trabajo ha sido publicado correctamente",
-                          icon: "success",
-                          confirmButtonText: "Ok",
-                        });
-                      } else {
-                        MySwal.fire({
-                          title: "Trabajo no publicado",
-                          text: "Su trabajo no ha sido publicado correctamente",
-                          icon: "error",
-                          confirmButtonText: "Ok",
-                        });
-                      }
-                    })
-                    .catch((err) => {
-                      console.log(err);
+                  let data = this.state.form;
+                  if (this.checkFilledFields() === true) {
+                    console.log(this.state.form);
+                    axios
+                      .post("http://localhost:3050/works/add/", {
+                        title: data.workTitle,
+                        keyword: data.workKeywords,
+                        joburl: data.workWebSite,
+                        worktype: data.workType,
+                        worklocation: data.workLocation,
+                        position: data.workPosition,
+                        applyMethodMail: data.workEmail,
+                        applymethod: data.workApplyMethod,
+                        ownermail: data.workEmail,
+                        description: data.workDescription,
+                        categoryid: parseInt(data.workCategory),
+                      })
+                      .then((res) => {
+                        let serverResponse = res.data.code;
+                        if (serverResponse == 200) {
+                          MySwal.fire({
+                            title: res.data.title,
+                            text: res.data.text,
+                            icon: res.data.icon,
+                            confirmButtonText: res.data.confirmButtonText,
+                            allowEnterKey: res.data.allowEnterKey,
+                            allowEscapeKey: true,
+                            allowOutsideClick: true,
+                            timer: 500,
+                            timerProgressBar: true,
+                          });
+                        }
+                      })
+                      .catch((err) => {
+                        console.log(err);
+                      });
+                  } else {
+                    MySwal.fire({
+                      title: "Trabajo no publicado",
+                      text:
+                        "Rellene todos los campos y asegurese de haber cliqueado bien la categoria y el tipo de trabajo que tiene",
+                      icon: "error",
+                      confirmButtonText: "Ok",
+                      allowEnterKey: true,
+                      allowEscapeKey: true,
+                      allowOutsideClick: true,
+                      allowEscapeKey: true,
+                      allowOutsideClick: true,
+                      timer: 3000,
+                      timerProgressBar: true,
                     });
+                  }
                 }}
                 variant="secondary"
                 size="lg"

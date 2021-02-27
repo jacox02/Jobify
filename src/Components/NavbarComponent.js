@@ -1,18 +1,16 @@
 import React from "react";
 import { Navbar, Nav, NavDropdown, Button } from "react-bootstrap";
-import { useAuth0 } from "@auth0/auth0-react";
+
 import { faSignInAlt, faHome } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-
 const NavbarComponent = React.memo(function NavbarComponent() {
-  const { logout, isAuthenticated, loginWithRedirect } = useAuth0();
-
   function userBarButton() {
-    if (isAuthenticated) {
+    let isAuthenticated = true;
+    if ((isAuthenticated = true)) {
       return (
-        <Button variant="warning" onClick={() => logout()}>
-         <FontAwesomeIcon icon={faSignInAlt}/> Logout
+        <Button variant="warning">
+          <FontAwesomeIcon icon={faSignInAlt} /> Logout
         </Button>
       );
     } else {
@@ -31,7 +29,9 @@ const NavbarComponent = React.memo(function NavbarComponent() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="/"><FontAwesomeIcon icon={faHome}/> Home</Nav.Link>
+            <Nav.Link href="/">
+              <FontAwesomeIcon icon={faHome} /> Home
+            </Nav.Link>
             <NavDropdown title="Trabajos" id="basic-nav-dropdown">
               <NavDropdown.Item href="/AddOffer">
                 Agregar trabajo
