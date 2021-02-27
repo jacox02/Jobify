@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 
-
 import NavbarComponent from "./Components/NavbarComponent";
 import PostulateComponent from "./Components/PostulateComponent";
 import WDetailsComponent from "./Components/WDetailsComponent";

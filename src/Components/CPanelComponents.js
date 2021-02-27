@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form, FormControl } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 const axios = require("axios");
 
@@ -24,8 +24,6 @@ export default class CPanelComponents extends Component {
       });
   }
 
-  
-  
   componentDidMount() {
     this.getperPage();
   }

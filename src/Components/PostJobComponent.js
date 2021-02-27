@@ -4,6 +4,8 @@ import "../style/PostJobStyle.css";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
+const axios = require("axios");
+
 const MySwal = withReactContent(Swal);
 export default class PostJobComponent extends Component {
   constructor(props) {
@@ -16,7 +18,12 @@ export default class PostJobComponent extends Component {
         workDescription: "",
         workLocation: "",
         workCategory: "",
+        workKeywords: "",
+        workWebSite: "",
+        workEmail: "",
+        workApplyMethod: "",
       },
+      categories: [],
     };
   }
 
@@ -29,6 +36,17 @@ export default class PostJobComponent extends Component {
     });
   };
 
+  componentDidMount() {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/categories/list`)
+      .then((response) => {
+        this.setState({ categories: response.data });
+        console.log(this.state.categories);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
   render() {
     return (
       <div>
@@ -55,11 +73,18 @@ export default class PostJobComponent extends Component {
             <Form.Label>Work Keywords</Form.Label>
             <Form.Control
               type="Text"
-              name="keywords"
+              name="workKeywords"
               onChange={this.handleChange}
             />
           </Form.Group>
-
+          <Form.Group>
+            <Form.Label>Sitio web de la propuesta</Form.Label>
+            <Form.Control
+              type="Text"
+              name="workWebSite"
+              onChange={this.handleChange}
+            />
+          </Form.Group>
           <Form.Group>
             <Form.Label>Location</Form.Label>
             <Form.Control
@@ -87,7 +112,7 @@ export default class PostJobComponent extends Component {
             <Form.Label>Email</Form.Label>
             <Form.Control
               type="Email"
-              name="email"
+              name="workEmail"
               onChange={this.handleChange}
             />
           </Form.Group>
@@ -96,7 +121,7 @@ export default class PostJobComponent extends Component {
             <Form.Label>Apply Method</Form.Label>
             <Form.Control
               type="Text"
-              name="applymethod"
+              name="workApplyMethod"
               onChange={this.handleChange}
             />
           </Form.Group>
@@ -108,11 +133,11 @@ export default class PostJobComponent extends Component {
               name="workCategory"
               onChange={this.handleChange}
             >
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
+              {this.state.categories.map((category) => (
+                <option key={category.Category_ID}>
+                  {category.Category_Name}
+                </option>
+              ))}
             </Form.Control>
           </Form.Group>
 
@@ -131,13 +156,35 @@ export default class PostJobComponent extends Component {
               <Button
                 onClick={(e) => {
                   e.preventDefault();
-                  console.log(this.state.form);
-                  MySwal.fire({
-                    title: "Error!",
-                    text: "Do you want to continue",
-                    icon: "error",
-                    confirmButtonText: "Cool",
-                  });
+                  let data = JSON.parse(this.state.form);
+                  console.log(data);
+                  axios({
+                    method: "POST",
+                    url: "http://localhost:3050/works/add",
+                    data: data,
+                  })
+                    .then((res) => {
+                      console.log(res);
+                      let serverResponse = res.data.code;
+                      if (serverResponse == 200) {
+                        MySwal.fire({
+                          title: "Trabajo publicado",
+                          text: "Su trabajo ha sido publicado correctamente",
+                          icon: "success",
+                          confirmButtonText: "Ok",
+                        });
+                      } else {
+                        MySwal.fire({
+                          title: "Trabajo no publicado",
+                          text: "Su trabajo no ha sido publicado correctamente",
+                          icon: "error",
+                          confirmButtonText: "Ok",
+                        });
+                      }
+                    })
+                    .catch((err) => {
+                      console.log(err);
+                    });
                 }}
                 variant="secondary"
                 size="lg"
