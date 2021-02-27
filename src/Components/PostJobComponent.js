@@ -1,10 +1,10 @@
 import React from "react";
 import { Form, Col, Row, Button } from "react-bootstrap";
 import "../style/PostJobStyle.css";
-import { useAuth0 } from "@auth0/auth0-react";
+//import { useAuth0 } from "@auth0/auth0-react";
 
 export default function PostJobComponent() {
-  const { user } = useAuth0();
+ // const { user } = useAuth0();
   //Add work poner a recoger toda la data y que la envie
   return (
     <div>
@@ -47,7 +47,7 @@ export default function PostJobComponent() {
 
         <Form.Group controlId="formHorizontalEmail">
           <Form.Label>Email</Form.Label>
-          <Form.Control type="Email" name="email" value={user.email} />
+          <Form.Control type="Email" name="email" />
         </Form.Group>
 
         <Form.Group>

@@ -39,7 +39,6 @@ const NavbarComponent = React.memo(function NavbarComponent() {
               <NavDropdown.Item href="/Works/:ownermail/List">
                 Mis trabajos
               </NavDropdown.Item>
-              <NavDropdown.Item href="/login">Login</NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <Nav className="mr-auto"></Nav>
