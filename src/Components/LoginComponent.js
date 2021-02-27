@@ -21,6 +21,7 @@ class LoginComponent extends Component {
     });
     console.log(this.state.form);
   };
+
   render() {
     return (
       <Form className="formulario">
