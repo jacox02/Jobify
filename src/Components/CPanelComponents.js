@@ -17,6 +17,7 @@ export default class CPanelComponents extends Component {
       .then((response) => {
         let quantity = response.data[0].Work_Quantity;
         this.setState({ perPage: quantity });
+        console.log(`Informacion traida del API = ${this.state.perPage}`);
       })
       .catch((error) => {
         console.log(`There was an error: ${error}`);
