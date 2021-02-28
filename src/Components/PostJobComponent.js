@@ -36,10 +36,21 @@ export default class PostJobComponent extends Component {
   };
   //Methodo para checar que todos los campos esten llenos
   checkFilledFields() {
-    if (true) {
-      return true;
-    } else {
+    let data = this.state.form;
+    if (!data.workTitle ||
+      !data.workKeywords ||
+      !data.workWebSite ||
+      !data.workLocation ||
+      !data.workPosition ||
+      !data.workEmail ||
+      !data.workApplyMethod ||
+      !data.workEmail ||
+      !data.workDescription ||
+      !data.workCategory) {
+        console.log(data)
       return false;
+    } else {
+      return true
     }
   }
   componentDidMount() {
