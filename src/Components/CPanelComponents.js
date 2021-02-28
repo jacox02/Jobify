@@ -18,7 +18,7 @@ export default class CPanelComponents extends Component {
   };
   getperPage() {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/WorkQuantity`)
+      .get(`${process.env.REACT_APP_API_URL}/config`)
       .then((response) => {
         let quantity = response.data[0].Work_Quantity;
         this.setState({ perPage: quantity });
@@ -30,7 +30,7 @@ export default class CPanelComponents extends Component {
   }
   updateperPage(){
     axios
-    .post(`${process.env.REACT_APP_API_URL}/WorkQuantity/edit`, {
+    .post(`${process.env.REACT_APP_API_URL}/config/edit`, {
       quantity: this.state.perPage,
     })
     .then((response) => {

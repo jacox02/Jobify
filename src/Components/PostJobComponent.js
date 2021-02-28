@@ -177,7 +177,7 @@ export default class PostJobComponent extends Component {
                   if (this.checkFilledFields() === true) {
                     console.log(this.state.form);
                     axios
-                      .post("http://localhost:3050/works/add/", {
+                      .post(`${process.env.REACT_APP_API_URL}/works/add/`, {
                         title: data.workTitle,
                         keyword: data.workKeywords,
                         joburl: data.workWebSite,
