@@ -31,7 +31,7 @@ export default class JobsComponent extends Component {
   }
   getperPage() {
     axios
-      .get(`${process.env.REACT_APP_API_URL}//config`)
+      .get(`${process.env.REACT_APP_API_URL}/config`)
       .then((response) => {
         let quantity = response.data[0].Work_Quantity;
         this.setState({ perPage: quantity });
