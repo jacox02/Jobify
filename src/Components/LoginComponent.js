@@ -21,15 +21,7 @@ class LoginComponent extends Component {
     });
     
   };
-  iniciarSesion=async()=>{
-    await axios.get({params: {User_Email: this.state.form.user.email, User_Password: this.state.form.user.password}})     
-    .then(response =>{
-      console.log(response.data);
-    })
-    .catch(error=>{
-      console.log(error);
-    })
-  }
+ 
   render() {
     return (
       <Form className="formulario">
@@ -63,13 +55,23 @@ class LoginComponent extends Component {
           </Form.Label>
         </Form.Group>
         <Form.Group>
-          <Button className="Button" variant="success" type="submit" block>
-            Log In <FontAwesomeIcon icon={faSignInAlt} />
+          <Button className="Button" 
+                  variant="success" 
+                  type="submit" 
+                  block 
+                  onClick={()=>this.iniciarSesion()}>
+            Log In 
+            <FontAwesomeIcon icon={faSignInAlt} />
           </Button>
         </Form.Group>
         <Form.Group>
-          <Button className="Button" variant="warning" type="submit" block onClick={()=>this.iniciarSesion()}>
-            Sign Up <FontAwesomeIcon icon={faUser} />
+          <Button className="Button" 
+                  variant="warning" 
+                  type="submit"  
+                  href="/register" 
+                  block >
+            Sign Up 
+            <FontAwesomeIcon icon={faUser} />
           </Button>
         </Form.Group>
       </Form>

@@ -11,6 +11,7 @@ import WorkList from "./Components/WorkList";
 import NotFoundComponent from "./Components/NotFoundComponent";
 import LoginComponent from "./Components/LoginComponent";
 import CPanelComponent from "./Components/CPanelComponents";
+import RegistryComponent from "./Components/RegistryComponent";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           ></Route>
           <Route path="/login" component={LoginComponent}></Route>
           <Route path="/AddOffer" component={PostJobComponent} />
+          <Route path="/register" component={RegistryComponent}></Route>
           <Route
             path="/Works/:id/Postulate"
             component={PostulateComponent}
