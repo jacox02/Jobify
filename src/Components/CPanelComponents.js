@@ -46,10 +46,22 @@ export default class CPanelComponents extends Component {
   updateConfig() {
     axios
       .post(`${process.env.REACT_APP_API_URL}/config/edit`, {
-        quantity: this.state.perPage,
+        Work_Quantity: this.state.perPage,
+        Selected_Category: this.state.Selected_Category,
       })
       .then((response) => {
         console.log(response.data);
+        MySwal.fire({
+          title: "Configuracion actualizada correctamente",
+          text: "Se ha actualizado la confiracion correctamente!",
+          icon: "success",
+          confirmButtonText: "OK",
+          allowEnterKey: true,
+          allowEscapeKey: true,
+          allowOutsideClick: true,
+          timer: 1000,
+          timerProgressBar: true,
+        });
       })
       .catch((err) => {
         console.log(err.message);
