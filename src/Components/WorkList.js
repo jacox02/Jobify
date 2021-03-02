@@ -3,6 +3,9 @@ import { Table, Button } from "react-bootstrap";
 import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../style/styleWorklist.css";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 const axios = require("axios");
 
 export default class WorkList extends Component {
@@ -40,17 +43,60 @@ export default class WorkList extends Component {
           <td>{row.Position}</td>
           <td>
             <Button variant="outline-danger" className="Modificadores">
-              <FontAwesomeIcon icon={faTrashAlt} />
+              <FontAwesomeIcon
+                icon={faTrashAlt}
+                onClick={() => {
+                  console.log(`DELETE BUTTON WORKING RN ${row.Work_ID}`);
+                  axios
+                    .post(
+                      `${process.env.REACT_APP_API_URL}/works/delete/${row.Work_ID}`
+                    )
+                    .then((res) => {
+                      console.log(res);
+                      MySwal.fire({
+                        title: "Trabajo eliminado con exito",
+                        icon: "success",
+                        confirmButtonText: "Ok",
+                        allowEnterKey: true,
+                        allowEscapeKey: true,
+                        allowOutsideClick: true,
+                        allowEscapeKey: true,
+                        allowOutsideClick: true,
+                        timer: 3000,
+                        timerProgressBar: true,
+                      });
+                    })
+                    .catch((err) => {
+                      MySwal.fire({
+                        title: "Trabajo no eliminado",
+                        text: `Hubo un error al tratar de eliminar este trabajo, reintente mas tarde. Error: \n ${err.message}`,
+                        icon: "error",
+                        confirmButtonText: "Ok",
+                        allowEnterKey: true,
+                        allowEscapeKey: true,
+                        allowOutsideClick: true,
+                        allowEscapeKey: true,
+                        allowOutsideClick: true,
+                        timer: 3000,
+                        timerProgressBar: true,
+                      });
+                    });
+                }}
+              />
             </Button>
             <Button variant="outline-warning" className="Modificadores">
-              <FontAwesomeIcon icon={faEdit} />
+              <FontAwesomeIcon
+                icon={faEdit}
+                onClick={() => {
+                  console.log(`EDIT BUTTON WORKING RN ${row.Work_ID}`);
+                }}
+              />
             </Button>
           </td>
         </tr>
       );
     });
   }
-  //Poner que con Auth mande el correo del usuario o transformarlo a React Functional Component
   render() {
     return (
       <div className="List">

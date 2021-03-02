@@ -3,10 +3,9 @@ import { Form, Col, Row, Button } from "react-bootstrap";
 import "../style/PostJobStyle.css";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-
+const MySwal = withReactContent(Swal);
 const axios = require("axios");
 
-const MySwal = withReactContent(Swal);
 export default class PostJobComponent extends Component {
   constructor(props) {
     super(props);
@@ -164,7 +163,6 @@ export default class PostJobComponent extends Component {
                   e.preventDefault();
                   let data = this.state.form;
                   if (this.checkFilledFields() === true) {
-                    console.log(this.state.form);
                     axios
                       .post("http://localhost:3050/works/add/", {
                         title: data.workTitle,

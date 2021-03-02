@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { withAuthenticationRequired } from "@auth0/auth0-react";
 
 import NavbarComponent from "./Components/NavbarComponent";
 import PostulateComponent from "./Components/PostulateComponent";
@@ -29,7 +28,7 @@ function App() {
             component={PostulateComponent}
           ></Route>
           <Route path="/Works/:ownermail/List" component={WorkList}></Route>
-          <Route path="/WorksQuantity" component={CPanelComponent}></Route>
+          <Route path="/controlPanel" component={CPanelComponent}></Route>
           <Route exact path="/" component={Jobs}></Route>
           <Route component={NotFoundComponent}></Route>
         </Switch>

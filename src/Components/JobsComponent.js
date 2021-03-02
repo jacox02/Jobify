@@ -21,7 +21,7 @@ export default class JobsComponent extends Component {
       tableData: [],
       currentCategory: 1,
       orgtableData: [],
-      perPage: 5,
+      perPage: 2,
       currentPage: 0,
       Description: "",
       UserInfo: {},
@@ -29,12 +29,22 @@ export default class JobsComponent extends Component {
     };
     this.handlePageClick = this.handlePageClick.bind(this);
   }
-  getperPage() {
+
+  getConfig() {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/WorkQuantity`)
+      .get(`${process.env.REACT_APP_API_URL}/config`)
       .then((response) => {
-        let quantity = response.data[0].Work_Quantity;
-        this.setState({ perPage: quantity });
+        this.setState({
+          perPage: response.data.Work_Quantity,
+          currentCategory: response.data.Selected_Category,
+        });
+      })
+      .then(() => {
+        if (this.state.currentCategory == 0) {
+          this.setState({ currentCategory: 1 });
+          this.getWorks();
+        }
+        this.getWorks();
       })
       .catch((error) => {
         console.log(`There was an error: ${error}`);
@@ -42,10 +52,10 @@ export default class JobsComponent extends Component {
   }
 
   getWorks() {
-    axios
-      .get(
-        `${process.env.REACT_APP_API_URL}/Works/${this.state.currentCategory}/List`
-      )
+    axios({
+      method: "GET",
+      url: `${process.env.REACT_APP_API_URL}/Works/${this.state.currentCategory}/List/${this.state.perPage}`,
+    })
       .then((response) => {
         this.setState({ works: response.data });
         const data = response.data;
@@ -89,6 +99,7 @@ export default class JobsComponent extends Component {
       }
     );
   };
+
   loadMoreData() {
     const data = this.state.orgtableData;
     const slice = data.slice(
@@ -102,8 +113,7 @@ export default class JobsComponent extends Component {
   }
 
   componentDidMount() {
-    this.getperPage()
-    this.getWorks();
+    this.getConfig();
     this.getCategories();
     this.renderJobs();
   }
@@ -156,7 +166,9 @@ export default class JobsComponent extends Component {
                   onChange={(e) => {
                     if (e.target.value.length == 1) {
                       axios
-                        .get(`${process.env.REACT_APP_API_URL}/Works/1/List`)
+                        .get(
+                          `${process.env.REACT_APP_API_URL}/Works/${e.target.value}/List/${this.state.perPage}`
+                        )
                         .then((response) => {
                           this.setState({
                             works: response.data,
@@ -174,10 +186,12 @@ export default class JobsComponent extends Component {
                 />
                 <Button
                   variant="outline-secondary"
-                  onClick={() => {
+                  onClick={(e) => {
                     if (this.state.searchParam.length < 1) {
                       axios
-                        .get(`${process.env.REACT_APP_API_URL}/Works/1/List`)
+                        .get(
+                          `${process.env.REACT_APP_API_URL}/Works/${e.target.value}/List/${this.state.perPage}`
+                        )
                         .then((response) => {
                           this.setState({
                             works: response.data,
@@ -216,7 +230,7 @@ export default class JobsComponent extends Component {
                     console.log(e.target.value);
                     axios
                       .get(
-                        `${process.env.REACT_APP_API_URL}/Works/${e.target.value}/List`
+                        `${process.env.REACT_APP_API_URL}/Works/${e.target.value}/List/${this.state.perPage}`
                       )
                       .then((response) => {
                         this.setState({ works: response.data });
