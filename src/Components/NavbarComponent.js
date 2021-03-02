@@ -6,8 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const NavbarComponent = React.memo(function NavbarComponent() {
   function userBarButton() {
-    let isAuthenticated = true;
-    if ((isAuthenticated = true)) {
+    let isAuthenticated = false;
+    if (isAuthenticated == true) {
       return (
         <Button variant="warning">
           <FontAwesomeIcon icon={faSignInAlt} /> Logout
