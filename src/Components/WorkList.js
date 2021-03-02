@@ -26,6 +26,7 @@ export default class WorkList extends Component {
           myJobs: response.data,
         });
       });
+    this.renderJobsRows();
   }
 
   componentDidMount() {
@@ -52,7 +53,6 @@ export default class WorkList extends Component {
                       `${process.env.REACT_APP_API_URL}/works/delete/${row.Work_ID}`
                     )
                     .then((res) => {
-                      console.log(res);
                       MySwal.fire({
                         title: "Trabajo eliminado con exito",
                         icon: "success",
@@ -65,6 +65,7 @@ export default class WorkList extends Component {
                         timer: 3000,
                         timerProgressBar: true,
                       });
+                      this.getWorkList();
                     })
                     .catch((err) => {
                       MySwal.fire({
@@ -81,6 +82,7 @@ export default class WorkList extends Component {
                         timerProgressBar: true,
                       });
                     });
+                  this.getWorkList();
                 }}
               />
             </Button>
