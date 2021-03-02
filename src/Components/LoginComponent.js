@@ -1,30 +1,30 @@
-import React, { Component } from "react";
+import React, {useState} from 'react'
 import { Form, Button } from "react-bootstrap";
 import "../style/styleLogin.css";
 import { faSignInAlt, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-const axios = require("axios");
-class LoginComponent extends Component {
-  state = {
-    form: {
-      User_Email:"", 
-      User_Password:""
-    },
-  };
+import Axios from "axios";
 
-  handleChange = async (e) => {
-    await this.setState({
-      form: {
-        ...this.state.form,
-        [e.target.name]: e.target.value,
-      },
+
+
+
+function LoginComponent() {
+
+  const [password, setPassword] = useState("");
+  const [useremail, setUseremail] = useState("");
+  
+  const login =() => {
+    Axios.post("http://localhost:3050/login",{
+      User_Email: useremail,
+      User_Password: password
+    }).then((response) =>{
+      console.log(response);
     });
-    
-  };
- 
-  render() {
-    return (
-      <Form className="formulario">
+       
+  }
+
+  return (
+    <Form className="formulario">
         <Form.Group>
           <center>
             <h2>Welcome to Jobify</h2>
@@ -36,7 +36,9 @@ class LoginComponent extends Component {
             name="User_Email"
             type="email"
             placeholder="enter email"
-            onChange={this.handleChange}
+            onChange={(e) =>{
+              setUseremail(e.target.value);}}
+            
           />
         </Form.Group>
 
@@ -46,7 +48,8 @@ class LoginComponent extends Component {
             name="User_Password"
             type="password"
             placeholder="password"
-            onChange={this.handleChange}
+            onChange={(e) =>{
+              setPassword(e.target.value);}}
           />
         </Form.Group>
         <Form.Group>
@@ -59,7 +62,7 @@ class LoginComponent extends Component {
                   variant="success" 
                   type="submit" 
                   block 
-                  onClick={()=>this.iniciarSesion()}>
+                  onClick={login}>
             Log In 
             <FontAwesomeIcon icon={faSignInAlt} />
           </Button>
@@ -69,14 +72,15 @@ class LoginComponent extends Component {
                   variant="warning" 
                   type="submit"  
                   href="/register" 
-                  block >
+                  block 
+                 >
             Sign Up 
             <FontAwesomeIcon icon={faUser} />
           </Button>
         </Form.Group>
       </Form>
-    );
-  }
+  )
 }
 
-export default LoginComponent;
+export default LoginComponent
+
