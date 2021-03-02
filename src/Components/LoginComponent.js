@@ -14,7 +14,7 @@ function LoginComponent() {
   const [useremail, setUseremail] = useState("");
   
   const login =() => {
-    Axios.post("http://localhost:3050/login",{
+    Axios.get("http://localhost:3050/login",{
       User_Email: useremail,
       User_Password: password
     }).then((response) =>{
