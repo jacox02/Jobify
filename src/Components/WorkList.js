@@ -50,7 +50,7 @@ export default class WorkList extends Component {
                   console.log(`DELETE BUTTON WORKING RN ${row.Work_ID}`);
                   axios
                     .post(
-                      `${process.env.REACT_APP_API_URL}/works/delete/${row.Work_ID}`
+                      `${process.env.REACT_APP_API_URL}/works/${row.Work_ID}/delete`
                     )
                     .then((res) => {
                       MySwal.fire({
@@ -86,13 +86,12 @@ export default class WorkList extends Component {
                 }}
               />
             </Button>
-            <Button variant="outline-warning" className="Modificadores">
-              <FontAwesomeIcon
-                icon={faEdit}
-                onClick={() => {
-                  console.log(`EDIT BUTTON WORKING RN ${row.Work_ID}`);
-                }}
-              />
+            <Button
+              variant="outline-warning"
+              className="Modificadores"
+              href={`/works/${row.Work_ID}/edit`}
+            >
+              <FontAwesomeIcon icon={faEdit} />
             </Button>
           </td>
         </tr>

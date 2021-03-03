@@ -3,23 +3,24 @@ import { Form, Col, Row, Button } from "react-bootstrap";
 import "../style/PostJobStyle.css";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-const MySwal = withReactContent(Swal);
+
 const axios = require("axios");
 
+const MySwal = withReactContent(Swal);
 export default class PostJobComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
       form: {
-        workTitle: "",
-        workType: "",
-        workPosition: "",
-        workDescription: "",
-        workLocation: "",
-        workKeywords: "",
-        workWebSite: "",
-        workEmail: "",
-        workApplyMethod: "",
+        workTitle: null,
+        workType: null,
+        workPosition: null,
+        workDescription: null,
+        workLocation: null,
+        workKeywords: null,
+        workWebSite: null,
+        workEmail: null,
+        workApplyMethod: null,
       },
       categories: [],
     };
@@ -33,22 +34,21 @@ export default class PostJobComponent extends Component {
       },
     });
   };
-  //Methodo para checar que todos los campos esten llenos
+
   checkFilledFields() {
     let data = this.state.form;
     if (
-      !data.workTitle ||
-      !data.workKeywords ||
-      !data.workWebSite ||
-      !data.workLocation ||
-      !data.workPosition ||
-      !data.workEmail ||
-      !data.workApplyMethod ||
-      !data.workEmail ||
-      !data.workDescription ||
-      !data.workCategory
+      data.workTitle == null ||
+      data.workKeywords == null ||
+      data.workWebSite == null ||
+      data.workLocation == null ||
+      data.workPosition == null ||
+      data.workEmail == null ||
+      data.workApplyMethod == null ||
+      data.workEmail == null ||
+      data.workDescription == null ||
+      data.workCategory == null
     ) {
-      console.log(data);
       return false;
     } else {
       return true;
@@ -175,7 +175,7 @@ export default class PostJobComponent extends Component {
                 onClick={(e) => {
                   e.preventDefault();
                   let data = this.state.form;
-                  if (this.checkFilledFields() === true) {
+                  if (this.checkFilledFields() == true) {
                     axios
                       .post(`${process.env.REACT_APP_API_URL}/works/add/`, {
                         title: data.workTitle,
@@ -192,10 +192,11 @@ export default class PostJobComponent extends Component {
                       })
                       .then((res) => {
                         let serverResponse = res.data.code;
+                        console.log(res.data.code);
                         if (serverResponse == 200) {
                           MySwal.fire({
-                            title: res.data.title,
-                            text: res.data.text,
+                            title: "Se anadio el trabajo correctamente",
+                            text: res.data.message,
                             icon: res.data.icon,
                             confirmButtonText: res.data.confirmButtonText,
                             allowEnterKey: res.data.allowEnterKey,

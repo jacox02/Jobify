@@ -11,6 +11,7 @@ import NotFoundComponent from "./Components/NotFoundComponent";
 import LoginComponent from "./Components/LoginComponent";
 import CPanelComponent from "./Components/CPanelComponents";
 import RegistryComponent from "./Components/RegistryComponent";
+import EditJobComponent from "./Components/EditJobComponent";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             path="/Works/:id/Postulate"
             component={PostulateComponent}
           ></Route>
+          <Route path="/works/:id/edit" component={EditJobComponent}></Route>
           <Route path="/Works/:ownermail/List" component={WorkList}></Route>
           <Route path="/controlPanel" component={CPanelComponent}></Route>
           <Route exact path="/" component={Jobs}></Route>
