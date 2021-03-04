@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Form, Button } from "react-bootstrap";
 import "../style/styleLogin.css";
 import { faSignInAlt, faUser } from "@fortawesome/free-solid-svg-icons";
@@ -8,20 +8,36 @@ import Axios from "axios";
 
 
 
+
 function LoginComponent() {
 
   const [password, setPassword] = useState("");
   const [useremail, setUseremail] = useState("");
-  
+  const [loginStatus, setLoginStatus] = useState("");
+  Axios.defaults.withCredentials = true;
   const login =() => {
-    Axios.get("http://localhost:3050/login",{
+    
+    Axios.post("http://localhost:3050/login",{
       User_Email: useremail,
-      User_Password: password
+      User_Password: password,
     }).then((response) =>{
-      console.log(response);
+      if(response.data.message){
+        setLoginStatus(response.data.message);
+      }else{
+        setLoginStatus(response.data[0].User_Email);
+      }
     });
        
   }
+
+
+  useEffect(()=>{
+    Axios.get("http://localhost:3050/login").then((response)=>{
+      if(response.data.loggedInd== true){
+        setLoginStatus(response.data.user[0].User_Email);
+      }
+    })
+  }, [])
 
   return (
     <Form className="formulario">
@@ -62,9 +78,12 @@ function LoginComponent() {
                   variant="success" 
                   type="submit" 
                   block 
-                  onClick={login}>
+                  onClick={(e) => {
+                    e.preventDefault();
+                    login();
+                  }}
+                  >
             Log In 
-            <FontAwesomeIcon icon={faSignInAlt} />
           </Button>
         </Form.Group>
         <Form.Group>
@@ -78,6 +97,7 @@ function LoginComponent() {
             <FontAwesomeIcon icon={faUser} />
           </Button>
         </Form.Group>
+        <h1>{loginStatus}</h1>
       </Form>
   )
 }
