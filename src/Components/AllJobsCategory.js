@@ -27,6 +27,7 @@ export default class AllCategoriesComponent extends Component {
     this.getWorkDetails();
     console.log(this.props.match.params.id);
   }
+
   render() {
     return this.state.Works.map((work) => {
       return (
