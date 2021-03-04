@@ -27,7 +27,7 @@ function LoginComponent() {
 
   useEffect(() => {
     axios.get("http://localhost:3050/login").then((response) => {
-      if (response.data.loggedInd == true) {
+      if (response.data.loggedIn == true) {
         setLoginStatus(response.data.user[0].User_Email);
       }
     });
