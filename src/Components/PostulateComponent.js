@@ -15,11 +15,17 @@ export default class PostulateComponent extends Component {
   number = React.createRef();
   mensaje = React.createRef();
 
-  state = {
-    email: "",
-    number: "",
-    mensaje: "",
-  };
+  constructor() {
+    super();
+    this.state ={
+      email: "",
+      number: "",
+      mensaje: "",
+      file: null,
+    }
+    this.enviarMensaje = this.enviarMensaje.bind(this);
+    this.Add = this.Add.bind(this);
+  }
 
   Cambios = () => {
     var email = this.email.current.value;
@@ -29,26 +35,38 @@ export default class PostulateComponent extends Component {
       email: email,
       number: number,
       mensaje: mensaje,
+      
     });
   };
 
-  constructor() {
-    super();
-    this.enviarMensaje = this.enviarMensaje.bind(this);
+  Add = (e) => {
+      this.setState({
+        file:  e.target.files[0],
+        loaded: 0,
+      })
+    
   }
-  async enviarMensaje(e) {
+
+  enviarMensaje = (e) => {
     e.preventDefault();
-    const { email, number, mensaje } = this.state;
-    await axios.post("http://localhost:3050/sendemail", {
-      email,
-      number,
-      mensaje,
-    });
+    const { email, number, mensaje } = this.state
+    console.log(this.state.file)
+    const file = new FormData() 
+    file.append('file', this.state.file)
+    file.append('email', this.state.email)
+    file.append('number', this.state.number)
+    file.append('mensaje', this.state.mensaje)
+    axios.post(`${process.env.REACT_APP_API_URL}/sendemail`, file,{
+
+    })
+      .then(res => {
+      console.log(res.statusText)
+   })
   }
   render() {
     return (
       <div>
-        <Form className="FormPostulate" onSubmit={this.enviarMensaje}>
+        <Form enctype="multipart/form-data" className="FormPostulate" onSubmit={this.enviarMensaje}>
           <Form.Group>
             <Form.Label>
               <FontAwesomeIcon icon={faEnvelope} /> Email
@@ -82,6 +100,16 @@ export default class PostulateComponent extends Component {
               rows={3}
               onChange={this.Cambios}
               ref={this.mensaje}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label> Add you CV
+            </Form.Label>
+            <Form.Control
+              type="file"
+              name="file"
+              onChange={this.Add}
+              multiple
             />
           </Form.Group>
           <Form.Group as={Row}>
