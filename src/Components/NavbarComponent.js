@@ -1,15 +1,27 @@
 import React from "react";
 import { Navbar, Nav, NavDropdown, Button } from "react-bootstrap";
-
+import Cookies from "js-cookie";
 import { faSignInAlt, faHome } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const NavbarComponent = React.memo(function NavbarComponent() {
   function userBarButton() {
-    let isAuthenticated = false;
-    if (isAuthenticated == true) {
+    const isAuthenticated = () => {
+      if (Cookies.get("User_ID")) {
+        return true;
+      } else {
+        return false;
+      }
+    };
+    isAuthenticated();
+
+    const logout = () => {
+      Cookies.remove("User_ID");
+    };
+
+    if (isAuthenticated() == true) {
       return (
-        <Button variant="warning">
+        <Button variant="warning" onClick={() => logout()}>
           <FontAwesomeIcon icon={faSignInAlt} /> Logout
         </Button>
       );

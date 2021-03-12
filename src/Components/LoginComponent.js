@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import "../style/styleLogin.css";
-import { faSignInAlt, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
+import Cookies from "js-cookie";
+
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 function LoginComponent() {
   const [password, setPassword] = useState("");
   const [useremail, setUseremail] = useState("");
   const [loginStatus, setLoginStatus] = useState("");
+
   axios.defaults.withCredentials = true;
   const login = () => {
     axios
@@ -20,7 +27,16 @@ function LoginComponent() {
         if (response.data.message) {
           setLoginStatus(response.data.message);
         } else {
-          setLoginStatus(response.data[0].User_Email);
+          setLoginStatus(response.data[0].User_ID);
+          Cookies.set("User_ID", `${response.data[0].User_ID}`, { expires: 7 });
+          MySwal.fire({
+            title: "Inicio de sesion correcto",
+            icon: "success",
+            allowEscapeKey: true,
+            allowOutsideClick: true,
+            timer: 1100,
+            timerProgressBar: true,
+          });
         }
       });
   };

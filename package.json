@@ -16,6 +16,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-react-views": "^0.11.0",
+    "js-cookie": "^2.2.1",
     "jwt-simple": "^0.5.6",
     "moment": "^2.29.1",
     "morgan": "^1.10.0",
