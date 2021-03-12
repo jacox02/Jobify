@@ -8,7 +8,7 @@ import {
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import sorry from "../img/123.png"
 const axios = require("axios");
 export default class JobsComponent extends Component {
   constructor(props) {
@@ -120,7 +120,9 @@ export default class JobsComponent extends Component {
 
   renderJobs() {
     if (this.state.works.length == 0) {
-      return <h1>No hay ningun trabajo de esta categoria :c FIX TTHIS </h1>;
+      return <div className="NoWord">
+              <img src={sorry}/>
+          </div>
     } else {
       return this.state.works.map((work) => {
         return (

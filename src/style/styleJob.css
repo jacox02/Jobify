@@ -83,3 +83,11 @@ ReactPaginate {
   .pagination > li:first-child > a, .pagination > li:first-child > span, .pagination > li:last-child > a, .pagination > li:last-child > span{
     border-radius: unset
   }
+
+  .NoWord{
+    color:#ECD115;
+    width: 50%;
+    height: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
