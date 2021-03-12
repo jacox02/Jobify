@@ -20,15 +20,16 @@ function LoginComponent() {
         if (response.data.message) {
           setLoginStatus(response.data.message);
         } else {
-          setLoginStatus(response.data[0].User_Email);
+          setLoginStatus(response.data[0].User_ID);
         }
       });
   };
 
   useEffect(() => {
     axios.get("http://localhost:3050/login").then((response) => {
+      console.log(response.data.user)
       if (response.data.loggedIn == true) {
-        setLoginStatus(response.data.user[0].User_Email);
+        setLoginStatus(response.data.user[0].User_ID);
       }
     });
   }, []);
