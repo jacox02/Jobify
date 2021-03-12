@@ -4,15 +4,15 @@ import Cookies from "js-cookie";
 import { faSignInAlt, faHome } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const NavbarComponent = React.memo(function NavbarComponent() {
+export default function NavbarComponent() {
+  const isAuthenticated = () => {
+    if (Cookies.get("User_ID")) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   function userBarButton() {
-    const isAuthenticated = () => {
-      if (Cookies.get("User_ID")) {
-        return true;
-      } else {
-        return false;
-      }
-    };
     isAuthenticated();
 
     const logout = () => {
@@ -41,10 +41,11 @@ const NavbarComponent = React.memo(function NavbarComponent() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="/">
-              <FontAwesomeIcon icon={faHome} /> Home
-            </Nav.Link>
-            <NavDropdown title="Trabajos" id="basic-nav-dropdown">
+            <NavDropdown
+              title="Trabajos"
+              id="basic-nav-dropdown"
+              hidden={!isAuthenticated()}
+            >
               <NavDropdown.Item href="/AddOffer">
                 Agregar trabajo
               </NavDropdown.Item>
@@ -62,6 +63,4 @@ const NavbarComponent = React.memo(function NavbarComponent() {
       </Navbar>
     </div>
   );
-});
-
-export default NavbarComponent;
+}

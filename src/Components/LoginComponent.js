@@ -28,18 +28,18 @@ function LoginComponent() {
           setLoginStatus(response.data.message);
         } else {
           setLoginStatus(response.data[0].User_ID);
+          Cookies.set("User_ID", `${response.data[0].User_ID}`, { expires: 7 });
+          MySwal.fire({
+            title: "Inicio de sesion correcto",
+            icon: "success",
+            allowEscapeKey: true,
+            allowOutsideClick: true,
+            timer: 1100,
+            timerProgressBar: true,
+          });
         }
       });
   };
-
-  useEffect(() => {
-    axios.get("http://localhost:3050/login").then((response) => {
-      console.log(response.data.user);
-      if (response.data.loggedIn == true) {
-        setLoginStatus(response.data.user[0].User_ID);
-      }
-    });
-  }, []);
 
   return (
     <Form className="formulario">
