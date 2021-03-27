@@ -4,6 +4,7 @@ import { Card } from "react-bootstrap";
 import "../style/styleWorkDetail.css";
 
 const axios = require("axios");
+
 export default class AllCategoriesComponent extends Component {
   constructor(props) {
     super();
@@ -11,6 +12,7 @@ export default class AllCategoriesComponent extends Component {
       Works: [],
     };
   }
+
   getWorkDetails() {
     axios
       .get(
@@ -25,6 +27,7 @@ export default class AllCategoriesComponent extends Component {
   }
   componentDidMount() {
     this.getWorkDetails();
+    ConfigService.getConfig();
     console.log(this.props.match.params.id);
   }
 

@@ -27,26 +27,26 @@ export default class EditJobComponent extends Component {
 
   checkFilledFields() {
     if (
-      this.state.workTitle == null ||
-      this.state.workTitle == "" ||
-      this.state.workKeywords == null ||
-      this.state.workKeywords == "" ||
-      this.state.workWebSite == null ||
-      this.state.workWebSite == null ||
-      this.state.workLocation == null ||
-      this.state.workLocation == "" ||
-      this.state.workPosition == null ||
-      this.state.workPosition == "" ||
-      this.state.workEmail == null ||
-      this.state.workEmail == "" ||
-      this.state.workApplyMethod == null ||
-      this.state.workApplyMethod == "" ||
-      this.state.workEmail == null ||
-      this.state.workEmail == "" ||
-      this.state.workDescription == null ||
-      this.state.workDescription == "" ||
-      this.state.workCategory == null ||
-      this.state.workCategory == ""
+      this.state.workTitle === null ||
+      this.state.workTitle === "" ||
+      this.state.workKeywords === null ||
+      this.state.workKeywords === "" ||
+      this.state.workWebSite === null ||
+      this.state.workWebSite === null ||
+      this.state.workLocation === null ||
+      this.state.workLocation === "" ||
+      this.state.workPosition === null ||
+      this.state.workPosition === "" ||
+      this.state.workEmail === null ||
+      this.state.workEmail === "" ||
+      this.state.workApplyMethod === null ||
+      this.state.workApplyMethod === "" ||
+      this.state.workEmail === null ||
+      this.state.workEmail === "" ||
+      this.state.workDescription === null ||
+      this.state.workDescription === "" ||
+      this.state.workCategory === null ||
+      this.state.workCategory === ""
     ) {
       return false;
     } else {
@@ -91,7 +91,7 @@ export default class EditJobComponent extends Component {
     this.fillFormData();
   }
   render() {
-    if (this.state.redirect == true) {
+    if (this.state.redirect === true) {
       return <Redirect to="/"></Redirect>;
     } else {
       return (
@@ -237,7 +237,7 @@ export default class EditJobComponent extends Component {
                 <Button
                   onClick={(e) => {
                     e.preventDefault();
-                    if (this.checkFilledFields() == true) {
+                    if (this.checkFilledFields() === true) {
                       axios
                         .post(
                           `${process.env.REACT_APP_API_URL}/works/${this.props.match.params.id}/edit/`,
@@ -256,7 +256,7 @@ export default class EditJobComponent extends Component {
                           }
                         )
                         .then((res) => {
-                          if (res.status == 200) {
+                          if (res.status === 200) {
                             MySwal.fire({
                               title: "Se edito el trabajo correctamente",
                               icon: "success",
@@ -283,8 +283,6 @@ export default class EditJobComponent extends Component {
                         icon: "error",
                         confirmButtonText: "Ok",
                         allowEnterKey: true,
-                        allowEscapeKey: true,
-                        allowOutsideClick: true,
                         allowEscapeKey: true,
                         allowOutsideClick: true,
                         timer: 3000,

@@ -1,7 +1,7 @@
 import React from "react";
 import { Navbar, Nav, NavDropdown, Button } from "react-bootstrap";
 import Cookies from "js-cookie";
-import { faSignInAlt, faHome } from "@fortawesome/free-solid-svg-icons";
+import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function NavbarComponent() {
@@ -19,7 +19,7 @@ export default function NavbarComponent() {
       Cookies.remove("User_ID");
     };
 
-    if (isAuthenticated() == true) {
+    if (isAuthenticated() === true) {
       return (
         <Button variant="warning" onClick={() => logout()}>
           <FontAwesomeIcon icon={faSignInAlt} /> Logout

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Card, Button, Form, FormControl, Row, Col } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
+import workService from "../services/works.service";
 import "../style/styleJob.css";
 import {
   faBriefcase,
@@ -8,7 +9,7 @@ import {
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import sorry from "../img/123.png"
+import sorry from "../img/123.png";
 const axios = require("axios");
 export default class JobsComponent extends Component {
   constructor(props) {
@@ -31,16 +32,16 @@ export default class JobsComponent extends Component {
   }
 
   getConfig() {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/config`)
-      .then((response) => {
+    workService
+      .getConfig()
+      .then((response) =>
         this.setState({
           perPage: response.data.Work_Quantity,
           currentCategory: response.data.Selected_Category,
-        });
-      })
+        })
+      )
       .then(() => {
-        if (this.state.currentCategory == 0) {
+        if (this.state.currentCategory === 0) {
           this.setState({ currentCategory: 1 });
           this.getWorks();
         }
@@ -52,10 +53,8 @@ export default class JobsComponent extends Component {
   }
 
   getWorks() {
-    axios({
-      method: "GET",
-      url: `${process.env.REACT_APP_API_URL}/Works/${this.state.currentCategory}/List/${this.state.perPage}`,
-    })
+    workService
+      .getWorks(this.state.currentCategory)
       .then((response) => {
         this.setState({ works: response.data });
         const data = response.data;
@@ -75,9 +74,26 @@ export default class JobsComponent extends Component {
       });
   }
 
+  getWorksFromCat(selectedCat) {
+    console.log(selectedCat);
+    workService.getWorksFromCat(selectedCat).then((response) => {
+      const data = response.data;
+      const slice = data.slice(
+        this.state.offset,
+        this.state.offset + this.state.perPage
+      );
+      this.renderJobs(data);
+      this.setState({
+        pageCount: Math.ceil(data.length / this.state.perPage),
+        orgtableData: response.data,
+        works: slice,
+      });
+      console.log(response.data);
+    });
+  }
   getCategories() {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/Works/Categories`)
+    workService
+      .getCategories()
       .then((response) => {
         this.setState({ categories: response.data });
       })
@@ -119,10 +135,12 @@ export default class JobsComponent extends Component {
   }
 
   renderJobs() {
-    if (this.state.works.length == 0) {
-      return <div className="NoWord">
-              <img src={sorry}/>
-          </div>
+    if (this.state.works.length === 0) {
+      return (
+        <div className="NoWord">
+          <img alt="Not found works" src={sorry} />
+        </div>
+      );
     } else {
       return this.state.works.map((work) => {
         return (
@@ -166,10 +184,11 @@ export default class JobsComponent extends Component {
                   type="text"
                   placeholder="React developer"
                   onChange={(e) => {
-                    if (e.target.value.length == 1) {
-                      axios
-                        .get(
-                          `${process.env.REACT_APP_API_URL}/Works/${e.target.value}/List/${this.state.perPage}`
+                    if (e.target.value.length < 1) {
+                      workService
+                        .searchWork(
+                          this.state.currentCategory,
+                          this.state.perPage
                         )
                         .then((response) => {
                           this.setState({
@@ -229,17 +248,7 @@ export default class JobsComponent extends Component {
                   name="Categoria"
                   className="form-control"
                   onChange={(e) => {
-                    console.log(e.target.value);
-                    axios
-                      .get(
-                        `${process.env.REACT_APP_API_URL}/Works/${e.target.value}/List/${this.state.perPage}`
-                      )
-                      .then((response) => {
-                        this.setState({ works: response.data });
-                      })
-                      .catch((error) => {
-                        console.log(error);
-                      });
+                    this.getWorksFromCat(e.target.value);
                   }}
                 >
                   {this.state.categories.map((cat) => (
@@ -252,20 +261,22 @@ export default class JobsComponent extends Component {
             </Col>
           </Row>
           <div className="pt-2">{this.renderJobs()}</div>
-          <ReactPaginate
-            className="Paginate"
-            previousLabel={"prev"}
-            nextLabel={"next"}
-            breakLabel={"..."}
-            breakClassName={"break-me"}
-            pageCount={this.state.pageCount}
-            marginPagesDisplayed={2}
-            pageRangeDisplayed={5}
-            onPageChange={this.handlePageClick}
-            containerClassName={"pagination"}
-            subContainerClassName={"pages pagination"}
-            activeClassName={"active"}
-          />
+          <div className="d-flex flex-row justify-content-center">
+            <ReactPaginate
+              className="Paginate"
+              previousLabel={"prev"}
+              nextLabel={"next"}
+              breakLabel={"..."}
+              breakClassName={"break-me"}
+              pageCount={this.state.pageCount}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={5}
+              onPageChange={this.handlePageClick}
+              containerClassName={"pagination"}
+              subContainerClassName={"pages pagination"}
+              activeClassName={"active"}
+            />
+          </div>
         </div>
       </div>
     );

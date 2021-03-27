@@ -4,7 +4,7 @@ import "../style/404ComponentStyles.css";
 export default function NotFoundComponent() {
   return (
     <div>
-       <img className="error404" src={error404}/>
+      <img className="error404" alt="Not Found" src={error404} />
     </div>
   );
 }

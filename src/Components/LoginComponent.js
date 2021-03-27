@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import "../style/styleLogin.css";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
@@ -73,7 +73,7 @@ function LoginComponent() {
       </Form.Group>
       <Form.Group>
         <Form.Label>
-          <a href="#">Forgot password?</a>
+          <a href="/">Forgot password?</a>
         </Form.Label>
       </Form.Group>
       <Form.Group>

@@ -1,47 +1,44 @@
-.Job{
-    margin-top: 2%;
-    margin-left: auto;
-    margin-right: auto;
-    width:70%;
-    opacity: 0.9;
+.Job {
+  margin-top: 2%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  opacity: 0.9;
 }
-.categoria{
-    width:50%;
-    margin-top: 4%;
-    margin-left: auto;
-    margin-right: 32%;
-}
-
-.Busqueda{
-    width: 50%;
-    margin-top: 4%;
-    margin-left: 32%;
-    margin-right:auto;
+.categoria {
+  width: 50%;
+  margin-top: 4%;
+  margin-left: auto;
+  margin-right: 32%;
 }
 
-.BarSearch{
- margin-right: 2%;
+.Busqueda {
+  width: 50%;
+  margin-top: 4%;
+  margin-left: 32%;
+  margin-right: auto;
 }
 
-.Navbar{
-    background-color: #474E4D;
+.BarSearch {
+  margin-right: 2%;
 }
 
-.titulo{
-    background-color: #474E4D;
-    font-size: 16px;
-    font-style: oblique;
-    color: aliceblue;
+.Navbar {
+  background-color: #474e4d;
 }
 
+.titulo {
+  background-color: #474e4d;
+  font-size: 16px;
+  font-style: oblique;
+  color: aliceblue;
+}
 
-
-.cortar{
-    overflow: hidden;
+.cortar {
+  overflow: hidden;
   text-overflow: ellipsis;
-    display: -webkit-box;
+  display: -webkit-box;
   display: -moz-box;
-  display: box;
   -webkit-box-orient: vertical;
   -moz-box-orient: vertical;
   box-orient: vertical;
@@ -50,44 +47,60 @@
 }
 
 ReactPaginate {
-    margin-top:3%;
-    margin-left: auto;
-    margin-right: auto;
+  margin-top: 3%;
+  margin-left: auto;
+  margin-right: auto;
 }
 /*Pagination*/
 .pagination {
-    margin: 15px auto;
-    display: flex;
-    list-style: none;
-    outline: none;
-  }
-  .pagination > .active > a{
-    background-color: #47ccde ;
-    border-color: #47ccde ;
-    color: #fff;
-  }
-  .pagination > li > a{
-    border: 1px solid #47ccde ;
-    padding: 5px 10px;
-    outline: none;
-    cursor: pointer;
-  }
-  .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{
-    background-color: #47ccde ;
-    border-color: #47ccde;
-    outline: none ;
-  }
-  .pagination > li > a, .pagination > li > span{
-    color: #47ccde
-  }
-  .pagination > li:first-child > a, .pagination > li:first-child > span, .pagination > li:last-child > a, .pagination > li:last-child > span{
-    border-radius: unset
-  }
+  margin: 15px auto;
+  display: flex;
+  list-style: none;
 
-  .NoWord{
-    color:#ECD115;
-    width: 50%;
-    height: 50%;
-    margin-left: auto;
-    margin-right: auto;
-  }
+  outline: none;
+}
+.pagination > .active > a {
+  background-color: #47ccde;
+
+  border-color: #47ccde;
+  color: #fff;
+}
+.pagination > li > a {
+  border: 1px solid #484c4d;
+
+  padding: 5px 10px;
+  outline: none;
+  cursor: pointer;
+}
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  background-color: #484c4d;
+
+  border-color: #484c4d;
+  outline: none;
+}
+.pagination > li > a,
+.pagination > li > span {
+  color: #484c4d;
+  border-radius: 50px 50px 50px 50px;
+}
+.pagination > li:first-child > a,
+.pagination > li:first-child > span,
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+  border-radius: 50px 50px 50px 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.NoWord {
+  color: #ecd115;
+  width: 50%;
+  height: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}

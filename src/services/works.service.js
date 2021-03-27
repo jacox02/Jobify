@@ -1,22 +1,26 @@
-const axios = require("axios");
-
-class WorkService {
-  getAllWorks() {
-    return axios.get("/Works/List").then((response) => {
-      return response.data;
-    });
+import axios from "axios";
+class workService {
+  static getConfig() {
+    return axios.get(`${process.env.REACT_APP_API_URL}/config`);
   }
-  getWorkDetails(id) {}
-  getOwnJobs(ownerMail) {}
-  getWorksByCat(catId) {}
 
-  createWork() {}
+  static getWorks(category) {
+    return axios.get(`${process.env.REACT_APP_API_URL}/Works/${category}/list`);
+  }
+  static searchWork(category) {
+    return axios.get(
+      `${process.env.REACT_APP_API_URL}/Works/${category}/list/`
+    );
+  }
+  static getCategories() {
+    return axios.get(`${process.env.REACT_APP_API_URL}/Works/Categories`);
+  }
 
-  updateWork(id, newData) {}
-
-  deleteWork(id, ownerMail) {}
-
-  searchJobBy(searchParam) {}
+  static getWorksFromCat(selectedCat) {
+    return axios.get(
+      `${process.env.REACT_APP_API_URL}/Works/${selectedCat}/List/`
+    );
+  }
 }
 
-export default new WorkService();
+export default workService;

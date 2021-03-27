@@ -38,16 +38,16 @@ export default class PostJobComponent extends Component {
   checkFilledFields() {
     let data = this.state.form;
     if (
-      data.workTitle == null ||
-      data.workKeywords == null ||
-      data.workWebSite == null ||
-      data.workLocation == null ||
-      data.workPosition == null ||
-      data.workEmail == null ||
-      data.workApplyMethod == null ||
-      data.workEmail == null ||
-      data.workDescription == null ||
-      data.workCategory == null
+      data.workTitle === null ||
+      data.workKeywords === null ||
+      data.workWebSite === null ||
+      data.workLocation === null ||
+      data.workPosition === null ||
+      data.workEmail === null ||
+      data.workApplyMethod === null ||
+      data.workEmail === null ||
+      data.workDescription === null ||
+      data.workCategory === null
     ) {
       return false;
     } else {
@@ -175,7 +175,7 @@ export default class PostJobComponent extends Component {
                 onClick={(e) => {
                   e.preventDefault();
                   let data = this.state.form;
-                  if (this.checkFilledFields() == true) {
+                  if (this.checkFilledFields() === true) {
                     axios
                       .post(`${process.env.REACT_APP_API_URL}/works/add/`, {
                         title: data.workTitle,
@@ -193,7 +193,7 @@ export default class PostJobComponent extends Component {
                       .then((res) => {
                         let serverResponse = res.data.code;
                         console.log(res.data.code);
-                        if (serverResponse == 200) {
+                        if (serverResponse === 200) {
                           MySwal.fire({
                             title: "Se anadio el trabajo correctamente",
                             text: res.data.message,
@@ -218,8 +218,6 @@ export default class PostJobComponent extends Component {
                       icon: "error",
                       confirmButtonText: "Ok",
                       allowEnterKey: true,
-                      allowEscapeKey: true,
-                      allowOutsideClick: true,
                       allowEscapeKey: true,
                       allowOutsideClick: true,
                       timer: 3000,

@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NavbarComponent from "./Components/NavbarComponent";
 import PostulateComponent from "./Components/PostulateComponent";
 import WDetailsComponent from "./Components/WDetailsComponent";
-import Jobs from "./Components/JobsComponent";
+import JobsComponent from "./Components/JobsComponent";
 import PostJobComponent from "./Components/PostJobComponent";
 import WorkList from "./Components/WorkList";
 import NotFoundComponent from "./Components/NotFoundComponent";
@@ -33,7 +33,7 @@ function App() {
           <Route path="/works/:id/edit" component={EditJobComponent}></Route>
           <Route path="/Works/:ownermail/List" component={WorkList}></Route>
           <Route path="/controlPanel" component={CPanelComponent}></Route>
-          <Route exact path="/" component={Jobs}></Route>
+          <Route exact path="/" component={JobsComponent}></Route>
           <Route component={NotFoundComponent}></Route>
         </Switch>
       </Router>

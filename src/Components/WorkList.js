@@ -60,8 +60,6 @@ export default class WorkList extends Component {
                         allowEnterKey: true,
                         allowEscapeKey: true,
                         allowOutsideClick: true,
-                        allowEscapeKey: true,
-                        allowOutsideClick: true,
                         timer: 3000,
                         timerProgressBar: true,
                       });
@@ -74,8 +72,6 @@ export default class WorkList extends Component {
                         icon: "error",
                         confirmButtonText: "Ok",
                         allowEnterKey: true,
-                        allowEscapeKey: true,
-                        allowOutsideClick: true,
                         allowEscapeKey: true,
                         allowOutsideClick: true,
                         timer: 3000,
